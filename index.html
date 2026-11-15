@@ -906,8 +906,9 @@
     /* Compact Floating Pip Trigger Pill (Opens Separate Cozy Room Window) */
     .pip-floating-trigger {
       position: fixed;
-      right: 18px;
-      bottom: calc(18px + var(--safe-bottom));
+      left: 20px;
+      right: auto;
+      bottom: calc(20px + var(--safe-bottom));
       z-index: 9000;
       display: inline-flex;
       align-items: center;
@@ -1726,7 +1727,7 @@
         <div class="tools-grid">
           <button type="button" class="pill-btn" onclick="downloadPwaFile('index.html')">1. index.html</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('manifest.json')">2. manifest.json</button>
-          <button type="button" class="pill-btn" onclick="downloadPwaFile('sw.js')">3. sw.js (v13)</button>
+          <button type="button" class="pill-btn" onclick="downloadPwaFile('sw.js')">3. sw.js (v14)</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('icon-192.png')">4. icon-192.png</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('icon-512.png')">5. icon-512.png</button>
         </div>
@@ -1945,13 +1946,13 @@
   <!-- Core Application Logic -->
   <script>
     /* =========================================================================
-       1. SELF-HEALING SERVICE WORKER & CACHE RESET ('stillwater-v13')
+       1. SELF-HEALING SERVICE WORKER & CACHE RESET ('stillwater-v14')
        ========================================================================= */
     (async function selfHealServiceWorkers() {
       try {
         if ("caches" in window) {
           const keys = await caches.keys();
-          await Promise.all(keys.filter(k => k !== "stillwater-v13").map(k => caches.delete(k)));
+          await Promise.all(keys.filter(k => k !== "stillwater-v14").map(k => caches.delete(k)));
         }
         if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
           const regs = await navigator.serviceWorker.getRegistrations();
@@ -3340,7 +3341,7 @@ Rules:
     }
 
     function buildServiceWorkerText() {
-      return `const CACHE_NAME = 'stillwater-v13';
+      return `const CACHE_NAME = 'stillwater-v14';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', (e) => {
   self.skipWaiting();
