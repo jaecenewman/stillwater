@@ -1371,7 +1371,7 @@
         <div class="tools-grid">
           <button type="button" class="pill-btn" onclick="downloadPwaFile('index.html')">1. index.html</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('manifest.json')">2. manifest.json</button>
-          <button type="button" class="pill-btn" onclick="downloadPwaFile('sw.js')">3. sw.js (v21)</button>
+          <button type="button" class="pill-btn" onclick="downloadPwaFile('sw.js')">3. sw.js (v22)</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('icon-192.png')">4. icon-192.png</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('icon-512.png')">5. icon-512.png</button>
         </div>
@@ -1676,13 +1676,13 @@
   <!-- Core Application Logic -->
   <script>
     /* =========================================================================
-       1. SELF-HEALING SERVICE WORKER & CACHE RESET ('stillwater-v21')
+       1. SELF-HEALING SERVICE WORKER & CACHE RESET ('stillwater-v22')
        ========================================================================= */
     (async function selfHealServiceWorkers() {
       try {
         if ("caches" in window) {
           const keys = await caches.keys();
-          await Promise.all(keys.filter(k => k !== "stillwater-v21").map(k => caches.delete(k)));
+          await Promise.all(keys.filter(k => k !== "stillwater-v22").map(k => caches.delete(k)));
         }
         if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
           const regs = await navigator.serviceWorker.getRegistrations();
@@ -2196,15 +2196,18 @@ Split the ramble into clean, atomic tasks. For each task extract:
       if (!jsonText) throw new Error("Empty Gemini response");
       const parsed = JSON.parse(jsonText);
       const validIds = new Set(window.appState.categories.map(c => c.id));
-      return parsed.map(item => ({
-        title: String(item.title || "").trim().toLowerCase(),
-        details: String(item.details || "").trim().toLowerCase(),
-        context: String(item.context || "").trim().toLowerCase(),
-        location: String(item.location || "").trim().toLowerCase(),
-        categoryId: validIds.has(item.categoryId) ? item.categoryId : activeCatHint,
-        tags: Array.isArray(item.tags) ? item.tags.map(t => (String(t).startsWith("#") ? String(t).toLowerCase() : "#" + String(t).toLowerCase())).slice(0, 2) : [],
-        urgent: Boolean(item.urgent)
-      })).filter(item => item.title.length > 0);
+      return parsed.map(item => {
+        const normalizedCat = resolveCategoryId(item.categoryId, activeCatHint);
+        return {
+          title: String(item.title || "").trim().toLowerCase(),
+          details: String(item.details || "").trim().toLowerCase(),
+          context: String(item.context || "").trim().toLowerCase(),
+          location: String(item.location || "").trim().toLowerCase(),
+          categoryId: validIds.has(normalizedCat) ? normalizedCat : activeCatHint,
+          tags: Array.isArray(item.tags) ? item.tags.map(t => (String(t).startsWith("#") ? String(t).toLowerCase() : "#" + String(t).toLowerCase())).slice(0, 2) : [],
+          urgent: Boolean(item.urgent)
+        };
+      }).filter(item => item.title.length > 0);
     }
 
     async function smartSortAndAdd() {
@@ -2396,11 +2399,11 @@ Split the ramble into clean, atomic tasks. For each task extract:
             skippedCount += 1;
             continue;
           }
-
-          let mappedCat = structured.categoryId;
+          let mappedCat = resolveCategoryId(structured.categoryId, "today");
           if (item.listTitle.includes("errand") || item.listTitle.includes("grocer") || item.listTitle.includes("shop")) mappedCat = "errands";
           else if (item.listTitle.includes("idea")) mappedCat = "ideas";
           else if (item.listTitle.includes("wait")) mappedCat = "waiting";
+          else if (item.listTitle) mappedCat = resolveCategoryId(item.listTitle, mappedCat);
 
           const tags = Array.isArray(structured.tags) ? [...structured.tags] : [];
           if (!tags.includes("#gtasks") && tags.length < 2) tags.push("#gtasks");
@@ -2589,11 +2592,27 @@ Split the ramble into clean, atomic tasks. For each task extract:
     /* =========================================================================
        7. CATEGORIES, TASKS (+1 TREAT REWARD), BIG 3, CALENDAR & TOOLS
        ========================================================================= */
-    function selectCategory(catId) {
-      window.appState.activeCategory = catId;
-      if (window.appState.activeView !== "tasks" && window.appState.activeView !== "completed") {
-        window.appState.activeView = "tasks";
+    function resolveCategoryId(rawCat, fallbackId = "today") {
+      if (!rawCat) return fallbackId;
+      const needle = String(rawCat).trim().toLowerCase().replace(/^@/, "");
+      if (needle === "all") return "all";
+      const cats = Array.isArray(window.appState?.categories) ? window.appState.categories : DEFAULT_CATEGORIES;
+      for (const c of cats) {
+        const cid = String(c.id || "").trim().toLowerCase();
+        const cname = String(c.name || "").trim().toLowerCase().replace(/^@/, "");
+        if (cid === needle || cname === needle) return c.id;
       }
+      if (needle.startsWith("errand") || needle.startsWith("grocer") || needle.startsWith("shop")) return "errands";
+      if (needle.startsWith("idea")) return "ideas";
+      if (needle.startsWith("wait")) return "waiting";
+      if (needle === "today") return "today";
+      return fallbackId;
+    }
+
+    function selectCategory(catId) {
+      const normalized = resolveCategoryId(catId, "all");
+      window.appState.activeCategory = normalized;
+      window.appState.activeView = "tasks";
       saveLocalOnly();
       renderAll();
     }
@@ -2682,7 +2701,8 @@ Split the ramble into clean, atomic tasks. For each task extract:
     }
 
     function getCategoryLabel(catId) {
-      const found = window.appState.categories.find(c => c.id === catId);
+      const resolved = resolveCategoryId(catId, "today");
+      const found = window.appState.categories.find(c => c.id === resolved);
       return found ? found.name : "today";
     }
 
@@ -2690,16 +2710,17 @@ Split the ramble into clean, atomic tasks. For each task extract:
       const bar = document.getElementById("categorySubmenuBar");
       if (!bar) return;
       const openTasks = window.appState.tasks.filter(t => !t.completed);
+      const activeCat = resolveCategoryId(window.appState.activeCategory, "all");
       let html = `
-        <button type="button" class="cat-tab ${window.appState.activeCategory === "all" ? "active" : ""}" onclick="selectCategory('all')">
+        <button type="button" class="cat-tab ${activeCat === "all" ? "active" : ""}" onclick="selectCategory('all')">
           <span>all</span>
           <span class="count-pill">${openTasks.length}</span>
         </button>
       `;
       for (const cat of window.appState.categories) {
-        const count = openTasks.filter(t => t.categoryId === cat.id).length;
+        const count = openTasks.filter(t => resolveCategoryId(t.categoryId, "today") === cat.id).length;
         html += `
-          <button type="button" class="cat-tab ${window.appState.activeCategory === cat.id ? "active" : ""}" onclick="selectCategory('${cat.id}')">
+          <button type="button" class="cat-tab ${activeCat === cat.id ? "active" : ""}" onclick="selectCategory('${cat.id}')">
             <span>${escapeHtml(cat.name)}</span>
             <span class="count-pill">${count}</span>
           </button>
@@ -2780,14 +2801,27 @@ Split the ramble into clean, atomic tasks. For each task extract:
       const view = window.appState.activeView;
 
       if (view === "tasks") {
+        const activeCat = resolveCategoryId(window.appState.activeCategory, "all");
         let list = window.appState.tasks.filter(t => !t.completed);
-        if (window.appState.activeCategory !== "all") list = list.filter(t => t.categoryId === window.appState.activeCategory);
+        if (activeCat !== "all") {
+          list = list.filter(t => resolveCategoryId(t.categoryId, "today") === activeCat);
+        }
+        const activeLabel = activeCat === "all" ? "all open tasks" : getCategoryLabel(activeCat);
+        const filterHeaderHtml = activeCat !== "all" ? `
+          <div class="card-header" style="margin-bottom:10px; padding:8px 12px; background:var(--paper-card); border:1px solid var(--paper-edge); border-radius:16px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="card-title">list: ${escapeHtml(activeLabel)}</span>
+              <span class="zone-badge">${list.length} item${list.length === 1 ? "" : "s"}</span>
+            </div>
+            <button type="button" class="pill-btn" style="min-height:30px; padding:4px 12px;" onclick="selectCategory('all')">show all</button>
+          </div>
+        ` : "";
+
         if (!list.length) {
-          const label = window.appState.activeCategory === "all" ? "open tasks" : getCategoryLabel(window.appState.activeCategory);
-          container.innerHTML = `<div class="empty-state">nothing in <strong>${escapeHtml(label)}</strong> right now — use quick capture above whenever something comes to mind.</div>`;
+          container.innerHTML = `${filterHeaderHtml}<div class="empty-state">nothing in <strong>${escapeHtml(activeLabel)}</strong> right now — use quick capture above whenever something comes to mind.</div>`;
           return;
         }
-        container.innerHTML = `<div class="task-list">${list.map(renderTaskCardHtml).join("")}</div>`;
+        container.innerHTML = `${filterHeaderHtml}<div class="task-list">${list.map(renderTaskCardHtml).join("")}</div>`;
         return;
       }
 
@@ -3483,7 +3517,7 @@ Split the ramble into clean, atomic tasks. For each task extract:
     }
 
     function buildServiceWorkerText() {
-      return `const CACHE_NAME = 'stillwater-v21';
+      return `const CACHE_NAME = 'stillwater-v22';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', (e) => {
   self.skipWaiting();
