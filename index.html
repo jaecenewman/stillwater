@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#f5f2eb" />
+  <meta name="theme-color" content="#F6F4EF" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="stillwater" />
@@ -16,29 +16,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper-bg: #f5f2eb;
-      --paper-card: #fbf9f4;
-      --paper-well: #efeae0;
-      --paper-edge: #dfd8ca;
-      --text-main: #2d2822;
-      --text-muted: #61584e;
-      --text-dim: #8a7f73;
+      --paper-bg: #F6F4EF;
+      --paper-card: #FBF9F4;
+      --paper-well: #EFEAE0;
+      --paper-edge: #DFD8CA;
+      --text-main: #26221E;
+      --text-muted: #5C5349;
+      --text-dim: #877C70;
 
-      --sage: #58725e;
-      --sage-soft: #8ba390;
-      --sage-bg: #e7ede7;
+      --sage: #637A68;
+      --sage-soft: #8BA390;
+      --sage-bg: #E7EDE7;
 
-      --mist: #53716f;
-      --mist-bg: #e4eceb;
+      --mist: #53716F;
+      --mist-bg: #DCE5E2;
 
-      --ochre: #8c6b32;
-      --ochre-bg: #f3ead8;
+      --ochre: #9A7432;
+      --ochre-light: #C89B54;
+      --ochre-bg: #F3EAD8;
 
-      --terra: #8f564e;
-      --terra-bg: #f2e4e1;
+      --terra: #B86B58;
+      --terra-bg: #F2E4E1;
 
-      --bark: #5e5043;
-      --bark-bg: #ece5dc;
+      --bark: #5E5043;
+      --bark-bg: #ECE5DC;
 
       /* Option 02: Sage Bouclé & Felt Pillows + Embroidered Thread Typography */
       --boucle-nap: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.24  0 0 0 0 0.30  0 0 0 0 0.25  0 0 0 0.20 0'/%3E%3C/filter%3E%3Crect width='48' height='48' filter='url(%23b)'/%3E%3Ccircle cx='8' cy='10' r='1.7' fill='%23ffffff' fill-opacity='0.14'/%3E%3Ccircle cx='22' cy='7' r='1.5' fill='%232c382e' fill-opacity='0.11'/%3E%3Ccircle cx='37' cy='14' r='1.8' fill='%23ffffff' fill-opacity='0.12'/%3E%3Ccircle cx='14' cy='26' r='1.9' fill='%232c382e' fill-opacity='0.10'/%3E%3Ccircle cx='31' cy='29' r='1.6' fill='%23ffffff' fill-opacity='0.14'/%3E%3Ccircle cx='42' cy='38' r='1.7' fill='%232c382e' fill-opacity='0.11'/%3E%3Ccircle cx='11' cy='41' r='1.6' fill='%23ffffff' fill-opacity='0.13'/%3E%3C/svg%3E");
@@ -86,18 +87,10 @@
       background-color: var(--paper-bg);
       color: var(--text-main);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 14px;
       line-height: 1.5;
-      overflow-x: hidden;
     }
 
-    body.lamp-on {
-      --text-main: #1b1713;
-      --text-muted: #453d35;
-      --text-dim: #665b50;
-    }
-
-    /* Non-blocking Multiply Optical Reading Lamp Layers (zero milky haze) */
+    /* Non-blocking Multiply Optical Reading Lamp Layers (zero milky/yellow haze) */
     #lampTintLayer,
     #lampConeLayer {
       position: fixed;
@@ -112,9 +105,9 @@
     body.lamp-on #lampTintLayer {
       opacity: 1;
       background: rgba(
-        calc(255 - var(--lamp-dim) * 75),
-        calc(244 - var(--lamp-warmth) * 42 - var(--lamp-dim) * 80),
-        calc(225 - var(--lamp-warmth) * 95 - var(--lamp-dim) * 88),
+        calc(255 - var(--lamp-dim) * 42),
+        calc(250 - var(--lamp-warmth) * 18 - var(--lamp-dim) * 48),
+        calc(240 - var(--lamp-warmth) * 42 - var(--lamp-dim) * 58),
         1
       );
     }
@@ -122,11 +115,22 @@
     body.lamp-on #lampConeLayer {
       opacity: 1;
       background: radial-gradient(
-        ellipse 95% 75% at 50% 14%,
-        rgba(255, 251, 242, 0.98) 0%,
-        rgba(246, 232, 204, 0.90) 58%,
-        rgba(222, 201, 168, 0.78) 100%
+        ellipse 95% 75% at 50% 0%,
+        rgba(255, 252, 245, 0.99) 0%,
+        rgba(248, 236, 214, 0.94) 55%,
+        rgba(232, 215, 186, 0.86) 100%
       );
+    }
+
+    @media (min-width: 768px) {
+      body.lamp-on #lampConeLayer {
+        background: radial-gradient(
+          ellipse 85% 95% at 100% 0%,
+          rgba(255, 248, 235, 0.99) 0%,
+          rgba(243, 217, 164, 0.93) 52%,
+          rgba(223, 193, 141, 0.84) 100%
+        );
+      }
     }
 
     /* Floating Bouclé Optical Lamp Control Dock */
@@ -137,7 +141,7 @@
       transform: translateX(-50%);
       z-index: 9999;
       width: min(560px, calc(100vw - 24px));
-      background-color: #efe4cb;
+      background-color: #EFE4CB;
       background-image: var(--boucle-nap), var(--boucle-pile);
       border-radius: 24px;
       padding: 12px 16px;
@@ -145,7 +149,7 @@
       display: none;
       flex-direction: column;
       gap: 10px;
-      color: #3d2e17;
+      color: #3D2E17;
       font-size: 12px;
     }
 
@@ -177,7 +181,7 @@
 
     .lamp-slider-group input[type="range"] {
       width: 100%;
-      accent-color: #8c6b32;
+      accent-color: #9A7432;
       cursor: pointer;
     }
 
@@ -186,7 +190,7 @@
       position: fixed;
       inset: 0;
       z-index: 10000;
-      background: radial-gradient(circle at 50% 45%, #faf8f2 0%, #efeae0 100%);
+      background: radial-gradient(circle at 50% 45%, #FAF8F2 0%, #EFEAE0 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -220,23 +224,23 @@
       top: 16px;
       width: 18px;
       height: 24px;
-      background: linear-gradient(160deg, #9db6a2 0%, #58725e 100%);
+      background: linear-gradient(160deg, #9DB6A2 0%, #637A68 100%);
       border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
-      box-shadow: 0 4px 10px rgba(88, 114, 94, 0.25);
+      box-shadow: 0 4px 10px rgba(99, 122, 104, 0.25);
       animation: dropFall 0.85s cubic-bezier(0.45, 0, 0.75, 0.35) forwards;
     }
 
     .intro-ring {
       position: absolute;
       border-radius: 50%;
-      border: 2px solid rgba(88, 114, 94, 0.45);
+      border: 2px solid rgba(99, 122, 104, 0.45);
       opacity: 0;
     }
 
     .intro-ring.r1 {
       width: 72px;
       height: 72px;
-      border-top-color: #58725e;
+      border-top-color: #637A68;
       border-right-color: transparent;
       animation: swirlClockwise 2.2s ease-out 0.75s forwards;
     }
@@ -244,7 +248,7 @@
     .intro-ring.r2 {
       width: 112px;
       height: 112px;
-      border-bottom-color: #6b8d8a;
+      border-bottom-color: #6B8D8A;
       border-left-color: transparent;
       animation: swirlCounter 2.4s ease-out 0.85s forwards;
     }
@@ -266,7 +270,7 @@
       font-family: 'Newsreader', Georgia, serif;
       font-size: 26px;
       letter-spacing: 0.04em;
-      color: #3b4a3e;
+      color: #3B4A3E;
       opacity: 0;
       transform: translateY(6px);
       animation: wordFade 0.8s ease 1.05s forwards;
@@ -316,7 +320,7 @@
     .app-shell {
       max-width: 760px;
       margin: 0 auto;
-      padding: calc(14px + var(--safe-top)) 14px calc(110px + var(--safe-bottom));
+      padding: calc(14px + var(--safe-top)) 14px calc(98px + var(--safe-bottom));
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -368,14 +372,14 @@
       font-family: inherit;
       color: inherit;
       letter-spacing: 0.015em;
-      text-transform: lowercase;
     }
 
     button {
       cursor: pointer;
       border: none;
       outline: none;
-      background-color: #e4e1d8;
+      background-color: #E4E1D8;
+      text-transform: lowercase;
       transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     }
 
@@ -386,8 +390,7 @@
     .view-tab,
     .mic-btn,
     .icon-btn,
-    .pip-pill-toggle,
-    .pip-avatar-btn,
+    .pip-floating-trigger,
     .mood-btn,
     .day-pill {
       position: relative;
@@ -408,8 +411,7 @@
     .view-tab:hover,
     .mic-btn:hover,
     .icon-btn:hover,
-    .pip-pill-toggle:hover,
-    .pip-avatar-btn:hover,
+    .pip-floating-trigger:hover,
     .mood-btn:hover,
     .day-pill:hover {
       box-shadow: var(--boucle-pillow-hover);
@@ -423,8 +425,7 @@
     .view-tab:active,
     .mic-btn:active,
     .icon-btn:active,
-    .pip-pill-toggle:active,
-    .pip-avatar-btn:active,
+    .pip-floating-trigger:active,
     .mood-btn:active,
     .day-pill:active {
       transform: translateY(1.5px) scale(0.985);
@@ -440,34 +441,34 @@
       padding: 8px 16px;
       border-radius: 999px;
       font-size: 12px;
-      background-color: #e6e2d8;
-      color: #2f2a24;
+      background-color: #E6E2D8;
+      color: #26221E;
       white-space: nowrap;
       flex-shrink: 0;
     }
     .pill-btn.sage {
-      background-color: #8ba390;
-      color: #f9f7f2;
+      background-color: #8BA390;
+      color: #F9F7F2;
       text-shadow: var(--stitch-dark);
     }
     .pill-btn.mist {
-      background-color: #849e9c;
-      color: #f9f7f2;
+      background-color: #849E9C;
+      color: #F9F7F2;
       text-shadow: var(--stitch-dark);
     }
     .pill-btn.ochre {
-      background-color: #c8ae7d;
+      background-color: #D2AE72;
       color: #352915;
       text-shadow: var(--stitch-light);
     }
     .pill-btn.terra {
-      background-color: #ba877f;
-      color: #fcfaf7;
+      background-color: #B86B58;
+      color: #FCFAF7;
       text-shadow: var(--stitch-dark);
     }
     .pill-btn.bark {
-      background-color: #b7aa99;
-      color: #2c241d;
+      background-color: #B7AA99;
+      color: #2C241D;
       text-shadow: var(--stitch-light);
     }
 
@@ -481,16 +482,17 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
-      background-color: #6b8471;
-      color: #faf8f3;
+      background-color: #637A68;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
       background-image:
         var(--boucle-nap),
         radial-gradient(125% 115% at 50% 16%, rgba(255, 253, 248, 0.24) 0%, rgba(255, 253, 248, 0.02) 55%, rgba(24, 36, 27, 0.26) 100%);
     }
-    .solid-btn:hover { background-color: #627a68; }
+    .solid-btn:hover { background-color: #5A705F; }
+    .solid-btn:disabled { opacity: 0.72; cursor: wait; }
     .solid-btn.mist { background-color: #638280; }
-    .solid-btn.ochre { background-color: #9e7d43; }
+    .solid-btn.ochre { background-color: #9E7D43; }
 
     /* Dynamic Sync Pill */
     .sync-dot {
@@ -501,17 +503,17 @@
       box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.2);
     }
     .pill-btn.sync-ok {
-      background-color: #7c9682;
-      color: #faf8f3;
+      background-color: #637A68;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
     }
-    .pill-btn.sync-ok .sync-dot { background-color: #e6f2e8; }
+    .pill-btn.sync-ok .sync-dot { background-color: #E6F2E8; }
     .pill-btn.sync-err {
-      background-color: #bc8a82;
-      color: #fcfaf7;
+      background-color: #B86B58;
+      color: #FCFAF7;
       text-shadow: var(--stitch-dark);
     }
-    .pill-btn.sync-err .sync-dot { background-color: #fbeae7; }
+    .pill-btn.sync-err .sync-dot { background-color: #FBEAE7; }
 
     /* Paper Cards */
     .paper-card {
@@ -553,8 +555,8 @@
       width: 68px;
       min-height: 68px;
       border-radius: 22px;
-      background-color: #849d89;
-      color: #faf8f3;
+      background-color: #637A68;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
       font-size: 13px;
       font-weight: 600;
@@ -566,8 +568,8 @@
       flex-shrink: 0;
     }
     .mic-btn.listening {
-      background-color: #b77e76;
-      color: #fcfaf7;
+      background-color: #B86B58;
+      color: #FCFAF7;
       text-shadow: var(--stitch-dark);
       animation: micPulse 1.4s infinite;
     }
@@ -591,7 +593,7 @@
       outline: none;
     }
     .capture-textarea:focus {
-      border-color: #8ba390;
+      border-color: #8BA390;
     }
 
     .capture-footer {
@@ -601,6 +603,22 @@
       gap: 10px;
       margin-top: 10px;
       flex-wrap: wrap;
+    }
+
+    .ai-mode-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--paper-well);
+      color: var(--text-muted);
+    }
+    .ai-mode-pill.gemini-ready {
+      background: var(--sage-bg);
+      color: var(--sage);
     }
 
     .photo-preview-strip {
@@ -632,7 +650,7 @@
       width: 18px;
       height: 18px;
       border-radius: 999px;
-      background: rgba(45, 40, 34, 0.78);
+      background: rgba(38, 34, 30, 0.78);
       color: #fff;
       font-size: 11px;
       display: flex;
@@ -659,14 +677,14 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
-      background-color: #e6e1d6;
-      color: #463e36;
+      background-color: #E6E1D6;
+      color: #3D362E;
       white-space: nowrap;
       flex-shrink: 0;
     }
     .cat-tab.active {
-      background-color: #78917d;
-      color: #faf8f3;
+      background-color: #637A68;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
     }
     .cat-tab .count-pill {
@@ -703,13 +721,13 @@
       border-radius: 999px;
       font-size: 12px;
       font-weight: 600;
-      background-color: #e8e3d8;
-      color: #4a4239;
+      background-color: #E8E3D8;
+      color: #3D362E;
       white-space: nowrap;
     }
     .view-tab.active {
-      background-color: #7c9481;
-      color: #faf8f3;
+      background-color: #637A68;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
     }
 
@@ -734,7 +752,7 @@
       width: 24px;
       height: 24px;
       border-radius: 9px;
-      background-color: #e6e1d6;
+      background-color: #E6E1D6;
       background-image: var(--boucle-nap), var(--boucle-pile);
       box-shadow: var(--boucle-pillow-shadow);
       display: flex;
@@ -742,13 +760,13 @@
       justify-content: center;
       font-size: 13px;
       font-weight: 600;
-      color: #faf8f3;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
       flex-shrink: 0;
       margin-top: 1px;
     }
     .task-check.checked {
-      background-color: #6b8471;
+      background-color: #637A68;
     }
 
     .task-body {
@@ -785,16 +803,34 @@
       color: var(--sage);
     }
 
+    .tag-badge {
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--mist-bg);
+      color: var(--mist);
+    }
+
+    .urgent-badge {
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--terra-bg);
+      color: var(--terra);
+    }
+
     .icon-btn {
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 600;
-      background-color: #e4dfd4;
-      color: #463e35;
+      background-color: #E4DFD4;
+      color: #3D362E;
     }
     .icon-btn.starred {
-      background-color: #c9ae7b;
+      background-color: #C89B54;
       color: #342814;
       text-shadow: var(--stitch-light);
     }
@@ -820,15 +856,15 @@
     .day-pill {
       padding: 8px 4px;
       border-radius: 15px;
-      background-color: #e6e1d6;
+      background-color: #E6E1D6;
       text-align: center;
       font-size: 11px;
       font-weight: 600;
-      color: #4a4239;
+      color: #3D362E;
     }
     .day-pill.active {
-      background-color: #78917d;
-      color: #faf8f3;
+      background-color: #637A68;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
     }
 
@@ -849,6 +885,9 @@
       outline: none;
       width: 100%;
     }
+    .clean-input:focus {
+      border-color: var(--sage);
+    }
 
     /* Tools & NFC Grid */
     .tools-grid {
@@ -857,68 +896,230 @@
       gap: 8px;
     }
 
-    /* Pip Companion Corner Card */
-    .pip-card {
+    .api-key-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* Compact Floating Pip Trigger Pill (Opens Separate Cozy Room Window) */
+    .pip-floating-trigger {
       position: fixed;
-      right: 14px;
-      bottom: calc(14px + var(--safe-bottom));
+      right: 18px;
+      bottom: calc(18px + var(--safe-bottom));
       z-index: 9000;
-      width: min(310px, calc(100vw - 28px));
-      background: var(--paper-card);
-      border: 1px solid var(--paper-edge);
-      border-radius: 22px;
-      padding: 12px 14px;
-      box-shadow: 0 10px 28px rgba(48, 42, 34, 0.14);
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 8px 16px 8px 9px;
+      border-radius: 999px;
+      background-color: #E8E3D6;
+      color: #26221E;
+      box-shadow: 0 10px 26px rgba(42, 38, 30, 0.18), inset 0 2px 4px rgba(255, 253, 248, 0.55), inset 0 -3px 6px rgba(45, 54, 46, 0.14);
+    }
+
+    .pip-trigger-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #B5C8B7 0%, #637A68 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.45);
+      flex-shrink: 0;
+    }
+
+    .pip-trigger-meta {
       display: flex;
       flex-direction: column;
-      gap: 9px;
-      transition: width 0.2s ease, padding 0.2s ease;
+      align-items: flex-start;
+      gap: 2px;
+      text-align: left;
     }
 
-    .pip-card.minimized {
-      width: auto;
-      padding: 8px 12px;
+    .pip-trigger-top {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .pip-treat-chip {
+      background: #F3EAD8;
+      color: #8A6526;
+      padding: 2px 9px;
       border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
     }
 
-    .pip-top {
+    .pip-trigger-sub {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .pip-trigger-pulse {
+      animation: treatBounce 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes treatBounce {
+      0%, 100% { transform: scale(1); }
+      35% { transform: scale(1.09) translateY(-4px); }
+      70% { transform: scale(0.97); }
+    }
+
+    /* Separate Interactive Cozy Isometric Room Modal */
+    .pip-room-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 9850;
+      background: rgba(30, 36, 29, 0.62);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .pip-room-backdrop.open {
+      display: flex;
+    }
+
+    .pip-room-window {
+      width: min(500px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #5E6F5A;
+      border: 1.5px solid rgba(246, 244, 239, 0.24);
+      border-radius: 28px;
+      padding: 16px;
+      box-shadow: 0 24px 56px rgba(18, 24, 19, 0.45);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      color: #FBF9F4;
+      position: relative;
+    }
+
+    .pip-room-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
+      z-index: 2;
     }
 
-    .pip-avatar-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 17px;
-      background-color: #9db3a1;
+    .pip-room-title-wrap {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .pip-card.minimized .pip-avatar-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
+      gap: 9px;
     }
 
-    .pip-pill-toggle {
-      width: 26px;
-      height: 26px;
+    .pip-room-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #FBF9F4;
+      text-shadow: 0 1px 3px rgba(24, 32, 24, 0.35);
+    }
+
+    .pip-room-treats-pill {
+      background: rgba(243, 234, 216, 0.94);
+      color: #6B4D1B;
+      padding: 4px 12px;
       border-radius: 999px;
-      background-color: #e4dfd4;
-      color: #3d362e;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 2px 8px rgba(24, 32, 24, 0.2);
     }
 
-    .pip-actions {
+    .pip-iso-stage {
+      position: relative;
+      width: 100%;
+      border-radius: 22px;
+      background: radial-gradient(circle at 50% 48%, #6B7D66 0%, #586954 100%);
+      padding: 6px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 12px rgba(24, 32, 24, 0.26);
+    }
+
+    .pip-iso-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+    }
+
+    .star-twinkle {
+      animation: starPulse 2.8s ease-in-out infinite alternate;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    .star-twinkle.d2 { animation-delay: 0.9s; }
+    .star-twinkle.d3 { animation-delay: 1.7s; }
+
+    @keyframes starPulse {
+      0% { opacity: 0.45; transform: scale(0.86); }
+      100% { opacity: 1; transform: scale(1.12); }
+    }
+
+    .fairy-bulb {
+      animation: bulbGlow 2.4s ease-in-out infinite alternate;
+    }
+    .fairy-bulb:nth-child(even) {
+      animation-delay: 1.1s;
+    }
+
+    @keyframes bulbGlow {
+      0% { opacity: 0.55; }
+      100% { opacity: 1; }
+    }
+
+    .candle-flame {
+      animation: flameFlicker 1.4s ease-in-out infinite alternate;
+      transform-origin: bottom center;
+      transform-box: fill-box;
+    }
+
+    @keyframes flameFlicker {
+      0% { transform: scale(0.92) rotate(-2deg); }
+      100% { transform: scale(1.08) rotate(2deg); }
+    }
+
+    #pipRoomCharacter {
+      cursor: pointer;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .pip-hop-anim {
+      animation: pipHappyHop 0.55s ease;
+    }
+
+    @keyframes pipHappyHop {
+      0%, 100% { filter: drop-shadow(0 3px 4px rgba(34, 24, 16, 0.28)); }
+      45% { filter: drop-shadow(0 10px 8px rgba(255, 224, 130, 0.55)); }
+    }
+
+    .pip-room-status-bar {
+      background: rgba(251, 249, 244, 0.94);
+      color: #26221E;
+      border-radius: 16px;
+      padding: 9px 14px;
+      font-size: 12px;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pip-room-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 8px;
       flex-wrap: wrap;
     }
@@ -926,15 +1127,16 @@
     .pip-heart {
       position: fixed;
       pointer-events: none;
-      z-index: 9500;
-      color: #a85b52;
-      font-size: 16px;
-      animation: floatHeart 1.1s ease-out forwards;
+      z-index: 9950;
+      color: #FFD166;
+      text-shadow: 0 2px 6px rgba(38, 24, 14, 0.45);
+      font-size: 18px;
+      animation: floatHeart 1.15s ease-out forwards;
     }
 
     @keyframes floatHeart {
       0% { transform: translateY(0) scale(0.8); opacity: 1; }
-      100% { transform: translateY(-48px) scale(1.2); opacity: 0; }
+      100% { transform: translateY(-54px) scale(1.25); opacity: 0; }
     }
 
     /* Modals */
@@ -942,7 +1144,7 @@
       position: fixed;
       inset: 0;
       z-index: 9800;
-      background: rgba(45, 40, 34, 0.36);
+      background: rgba(38, 34, 30, 0.36);
       display: none;
       align-items: center;
       justify-content: center;
@@ -975,18 +1177,18 @@
     .mood-btn {
       padding: 12px 6px;
       border-radius: 17px;
-      background-color: #e6e1d6;
+      background-color: #E6E1D6;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
       font-size: 12px;
       font-weight: 600;
-      color: #4a4239;
+      color: #3D362E;
     }
     .mood-btn.selected {
-      background-color: #78917d;
-      color: #faf8f3;
+      background-color: #637A68;
+      color: #FAF8F3;
       text-shadow: var(--stitch-dark);
     }
 
@@ -997,8 +1199,8 @@
       left: 50%;
       transform: translateX(-50%) translateY(20px);
       z-index: 10001;
-      background: #333b34;
-      color: #faf8f3;
+      background: #26221E;
+      color: #FAF8F3;
       padding: 10px 18px;
       border-radius: 999px;
       font-size: 12px;
@@ -1059,24 +1261,21 @@
       <svg class="intro-pip" width="84" height="84" viewBox="0 0 120 120" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="introSageGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#c3d4c4" />
-            <stop offset="100%" stop-color="#7c9882" />
+            <stop offset="0%" stop-color="#C3D4C4" />
+            <stop offset="100%" stop-color="#637A68" />
           </linearGradient>
         </defs>
         <rect x="6" y="6" width="108" height="108" rx="30" fill="url(#introSageGrad)" />
-        <ellipse cx="60" cy="84" rx="42" ry="13" stroke="#eaf2eb" stroke-opacity="0.55" stroke-width="2.2" />
-        <ellipse cx="60" cy="84" rx="28" ry="8.5" stroke="#eaf2eb" stroke-opacity="0.75" stroke-width="2" />
-        <!-- Leaf ears -->
-        <path d="M44 43 C35 33, 33 24, 42 23 C49 23, 51 33, 49 41 Z" fill="#68846d" stroke="#364438" stroke-width="2.2" />
-        <path d="M76 43 C85 33, 87 24, 78 23 C71 23, 69 33, 71 41 Z" fill="#68846d" stroke="#364438" stroke-width="2.2" />
-        <!-- Pip body -->
-        <path d="M38 64 C38 46, 47 38, 60 38 C73 38, 82 46, 82 64 C82 77, 74 83, 60 83 C46 83, 38 77, 38 64 Z" fill="#efe6d6" stroke="#364438" stroke-width="2.5" />
-        <circle cx="51" cy="59" r="2.7" fill="#364438" />
-        <circle cx="69" cy="59" r="2.7" fill="#364438" />
-        <path d="M56 63 Q60 67 64 63" stroke="#364438" stroke-width="2.3" stroke-linecap="round" />
-        <!-- Floating hearts -->
-        <path d="M31 46 C29 44, 26 46, 28 49 L31 52 L34 49 C36 46, 33 44, 31 46 Z" fill="#58725e" />
-        <path d="M89 46 C87 44, 84 46, 86 49 L89 52 L92 49 C94 46, 91 44, 89 46 Z" fill="#58725e" />
+        <ellipse cx="60" cy="84" rx="42" ry="13" stroke="#EAF2EB" stroke-opacity="0.55" stroke-width="2.2" />
+        <ellipse cx="60" cy="84" rx="28" ry="8.5" stroke="#EAF2EB" stroke-opacity="0.75" stroke-width="2" />
+        <path d="M44 43 C35 33, 33 24, 42 23 C49 23, 51 33, 49 41 Z" fill="#637A68" stroke="#26221E" stroke-width="2.2" />
+        <path d="M76 43 C85 33, 87 24, 78 23 C71 23, 69 33, 71 41 Z" fill="#637A68" stroke="#26221E" stroke-width="2.2" />
+        <path d="M38 64 C38 46, 47 38, 60 38 C73 38, 82 46, 82 64 C82 77, 74 83, 60 83 C46 83, 38 77, 38 64 Z" fill="#EFE6D6" stroke="#26221E" stroke-width="2.5" />
+        <circle cx="51" cy="59" r="2.7" fill="#26221E" />
+        <circle cx="69" cy="59" r="2.7" fill="#26221E" />
+        <path d="M56 63 Q60 67 64 63" stroke="#26221E" stroke-width="2.3" stroke-linecap="round" />
+        <path d="M31 46 C29 44, 26 46, 28 49 L31 52 L34 49 C36 46, 33 44, 31 46 Z" fill="#637A68" />
+        <path d="M89 46 C87 44, 84 46, 86 49 L89 52 L92 49 C94 46, 91 44, 89 46 Z" fill="#637A68" />
       </svg>
     </div>
     <div class="intro-wordmark">stillwater</div>
@@ -1088,26 +1287,25 @@
     <!-- Top Header -->
     <header class="top-header">
       <div class="brand-lockup">
-        <!-- Option 3 Pip-in-Ripples Header Emblem (no inner text) -->
         <div class="brand-emblem" aria-label="stillwater emblem">
           <svg width="44" height="44" viewBox="0 0 120 120" fill="none">
             <defs>
               <linearGradient id="hdrSageGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#c3d4c4" />
-                <stop offset="100%" stop-color="#7c9882" />
+                <stop offset="0%" stop-color="#C3D4C4" />
+                <stop offset="100%" stop-color="#637A68" />
               </linearGradient>
             </defs>
             <rect width="120" height="120" fill="url(#hdrSageGrad)" />
-            <ellipse cx="60" cy="86" rx="44" ry="14" stroke="#eaf2eb" stroke-opacity="0.55" stroke-width="2.5" />
-            <ellipse cx="60" cy="86" rx="29" ry="9" stroke="#eaf2eb" stroke-opacity="0.8" stroke-width="2.2" />
-            <path d="M44 43 C35 33, 33 24, 42 23 C49 23, 51 33, 49 41 Z" fill="#68846d" stroke="#364438" stroke-width="2.4" />
-            <path d="M76 43 C85 33, 87 24, 78 23 C71 23, 69 33, 71 41 Z" fill="#68846d" stroke="#364438" stroke-width="2.4" />
-            <path d="M38 64 C38 46, 47 38, 60 38 C73 38, 82 46, 82 64 C82 77, 74 83, 60 83 C46 83, 38 77, 38 64 Z" fill="#efe6d6" stroke="#364438" stroke-width="2.6" />
-            <circle cx="51" cy="59" r="2.8" fill="#364438" />
-            <circle cx="69" cy="59" r="2.8" fill="#364438" />
-            <path d="M56 63 Q60 67 64 63" stroke="#364438" stroke-width="2.4" stroke-linecap="round" />
-            <path d="M30 46 C28 44, 25 46, 27 49 L30 52 L33 49 C35 46, 32 44, 30 46 Z" fill="#58725e" />
-            <path d="M90 46 C88 44, 85 46, 87 49 L90 52 L93 49 C95 46, 92 44, 90 46 Z" fill="#58725e" />
+            <ellipse cx="60" cy="86" rx="44" ry="14" stroke="#EAF2EB" stroke-opacity="0.55" stroke-width="2.5" />
+            <ellipse cx="60" cy="86" rx="29" ry="9" stroke="#EAF2EB" stroke-opacity="0.8" stroke-width="2.2" />
+            <path d="M44 43 C35 33, 33 24, 42 23 C49 23, 51 33, 49 41 Z" fill="#637A68" stroke="#26221E" stroke-width="2.4" />
+            <path d="M76 43 C85 33, 87 24, 78 23 C71 23, 69 33, 71 41 Z" fill="#637A68" stroke="#26221E" stroke-width="2.4" />
+            <path d="M38 64 C38 46, 47 38, 60 38 C73 38, 82 46, 82 64 C82 77, 74 83, 60 83 C46 83, 38 77, 38 64 Z" fill="#EFE6D6" stroke="#26221E" stroke-width="2.6" />
+            <circle cx="51" cy="59" r="2.8" fill="#26221E" />
+            <circle cx="69" cy="59" r="2.8" fill="#26221E" />
+            <path d="M56 63 Q60 67 64 63" stroke="#26221E" stroke-width="2.4" stroke-linecap="round" />
+            <path d="M30 46 C28 44, 25 46, 27 49 L30 52 L33 49 C35 46, 32 44, 30 46 Z" fill="#637A68" />
+            <path d="M90 46 C88 44, 85 46, 87 49 L90 52 L93 49 C95 46, 92 44, 90 46 Z" fill="#637A68" />
           </svg>
         </div>
         <div class="brand-title">stillwater</div>
@@ -1132,13 +1330,13 @@
     <section class="paper-card" id="tour-capture">
       <div class="card-header">
         <span class="card-title">quick capture — voice or text ramble</span>
-        <span class="card-sub">auto-sorts into your category submenus</span>
+        <span id="parserModeBadge" class="ai-mode-pill" onclick="switchView('tools')" style="cursor:pointer;" title="configure optional gemini ai key in tools & nfc">smart on-device parser</span>
       </div>
       <div class="capture-row">
         <button type="button" id="micCaptureBtn" class="mic-btn" onclick="toggleVoiceCapture()">
           <span id="micLabel">mic</span>
         </button>
-        <textarea id="captureInput" class="capture-textarea" placeholder="ramble anything: pick up groceries on the way home, email sarah about friday, sketch a weekend idea, or waiting on package delivery..."></textarea>
+        <textarea id="captureInput" class="capture-textarea" placeholder="ramble anything: i need to pick up milk and eggs on the way home and also don't forget to email sarah about friday, plus i have a weekend sketch idea..."></textarea>
       </div>
       <div id="pendingPhotoStrip" class="photo-preview-strip"></div>
       <div class="capture-footer">
@@ -1146,7 +1344,7 @@
           <input type="file" id="photoFileInput" accept="image/*" style="display:none" onchange="handlePhotoSelected(event)" />
           <button type="button" class="pill-btn" onclick="document.getElementById('photoFileInput').click()">attach photo</button>
         </div>
-        <button type="button" class="solid-btn" onclick="smartSortAndAdd()">smart sort &amp; add</button>
+        <button type="button" id="smartSortBtn" class="solid-btn" onclick="smartSortAndAdd()">smart sort &amp; add</button>
       </div>
     </section>
 
@@ -1168,36 +1366,306 @@
     <main id="activeViewContainer"></main>
   </div>
 
-  <!-- Interactive Pip Companion Corner Card -->
-  <aside id="pipCornerCard" class="pip-card" aria-label="pip companion">
-    <div class="pip-top">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <button type="button" class="pip-avatar-btn" onclick="petPip(event)" title="tap to pet pip">
-          <svg width="30" height="30" viewBox="0 0 120 120" fill="none">
-            <path d="M44 43 C35 33, 33 24, 42 23 C49 23, 51 33, 49 41 Z" fill="#68846d" stroke="#2f3b31" stroke-width="3" />
-            <path d="M76 43 C85 33, 87 24, 78 23 C71 23, 69 33, 71 41 Z" fill="#68846d" stroke="#2f3b31" stroke-width="3" />
-            <path d="M36 66 C36 46, 46 38, 60 38 C74 38, 84 46, 84 66 C84 80, 75 86, 60 86 C45 86, 36 80, 36 66 Z" fill="#efe6d6" stroke="#2f3b31" stroke-width="3.2" />
-            <circle cx="50" cy="60" r="3.5" fill="#2f3b31" />
-            <circle cx="70" cy="60" r="3.5" fill="#2f3b31" />
-            <path d="M55 65 Q60 70 65 65" stroke="#2f3b31" stroke-width="3" stroke-linecap="round" />
-          </svg>
-        </button>
-        <div id="pipExpandedInfo">
-          <div style="display:flex; align-items:center; gap:6px;">
-            <strong style="font-size:13px;">pip</strong>
-            <span id="pipTreatsBadge" style="background:var(--ochre-bg); color:var(--ochre); padding:2px 8px; border-radius:999px; font-size:11px; font-weight:600;">treats: 2</span>
-          </div>
-          <div id="pipMoodCaption" style="font-size:11px; color:var(--text-dim);">calm &amp; cozy · tap to pet</div>
-        </div>
-      </div>
-      <button type="button" id="pipCollapseBtn" class="pip-pill-toggle" onclick="togglePipMinimize()" title="minimize or expand pip">–</button>
-    </div>
+  <!-- Compact Floating Pip Companion Trigger Pill -->
+  <button type="button" id="pipFloatingTrigger" class="pip-floating-trigger" onclick="openPipRoom()" aria-label="open pip's cozy room">
+    <span class="pip-trigger-avatar">
+      <svg width="26" height="26" viewBox="0 0 120 120" fill="none">
+        <path d="M44 43 C35 33, 33 24, 42 23 C49 23, 51 33, 49 41 Z" fill="#637A68" stroke="#26221E" stroke-width="3.2" />
+        <path d="M76 43 C85 33, 87 24, 78 23 C71 23, 69 33, 71 41 Z" fill="#637A68" stroke="#26221E" stroke-width="3.2" />
+        <path d="M36 66 C36 46, 46 38, 60 38 C74 38, 84 46, 84 66 C84 80, 75 86, 60 86 C45 86, 36 80, 36 66 Z" fill="#EFE6D6" stroke="#26221E" stroke-width="3.4" />
+        <circle cx="50" cy="60" r="3.6" fill="#26221E" />
+        <circle cx="70" cy="60" r="3.6" fill="#26221E" />
+        <path d="M55 65 Q60 70 65 65" stroke="#26221E" stroke-width="3.2" stroke-linecap="round" />
+      </svg>
+    </span>
+    <span class="pip-trigger-meta">
+      <span class="pip-trigger-top">
+        <strong style="font-size:13px;">pip</strong>
+        <span id="pipTriggerTreats" class="pip-treat-chip">treats: 2</span>
+      </span>
+      <span class="pip-trigger-sub">open cozy room</span>
+    </span>
+  </button>
 
-    <div id="pipExpandedActions" class="pip-actions">
-      <button type="button" class="pill-btn sage" style="min-height:32px; padding:5px 12px;" onclick="feedPipTreat()">give treat</button>
-      <button type="button" class="pill-btn" style="min-height:32px; padding:5px 12px;" onclick="openWindDownModal()">wind-down</button>
+  <!-- Separate Interactive Cozy Room Modal Window -->
+  <div id="pipRoomModal" class="pip-room-backdrop" onclick="closePipRoomOnBackdrop(event)">
+    <div class="pip-room-window" role="dialog" aria-modal="true" aria-label="pip's cozy room">
+      <div class="pip-room-header">
+        <div class="pip-room-title-wrap">
+          <span class="pip-room-title">pip's cozy room</span>
+          <span id="pipRoomTreatsPill" class="pip-room-treats-pill">treats: 2</span>
+        </div>
+        <button type="button" class="pill-btn" style="min-height:32px; padding:5px 14px;" onclick="closePipRoom()">close room</button>
+      </div>
+
+      <!-- Illustrated Isometric Cozy Room Stage -->
+      <div class="pip-iso-stage">
+        <svg class="pip-iso-svg" viewBox="0 0 500 470" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Sunset Window Gradient -->
+            <linearGradient id="roomSunsetGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#D9985F" />
+              <stop offset="55%" stop-color="#F2C472" />
+              <stop offset="100%" stop-color="#FCE39C" />
+            </linearGradient>
+            <!-- Evening Twilight Window Gradient -->
+            <linearGradient id="roomNightGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2E3B4E" />
+              <stop offset="65%" stop-color="#4A5D6E" />
+              <stop offset="100%" stop-color="#7B8275" />
+            </linearGradient>
+            <!-- Lamp Cone Glow -->
+            <radialGradient id="floorLampGlow" cx="50%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#FFE699" stop-opacity="0.58" />
+              <stop offset="100%" stop-color="#FFE699" stop-opacity="0" />
+            </radialGradient>
+            <!-- Star Glow Filter -->
+            <filter id="starGlow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="2.2" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Twinkling Golden 4-Point Stars Surrounding the Room -->
+          <g filter="url(#starGlow)" fill="#F9BE4F">
+            <path class="star-twinkle" d="M44 26 L46 35 L55 37 L46 39 L44 48 L42 39 L33 37 L42 35 Z" />
+            <path class="star-twinkle d2" d="M68 18 L69.5 24 L75 25.5 L69.5 27 L68 33 L66.5 27 L61 25.5 L66.5 24 Z" />
+            <path class="star-twinkle d3" d="M88 64 L89.5 71 L96 72.5 L89.5 74 L88 81 L86.5 74 L80 72.5 L86.5 71 Z" />
+            <path class="star-twinkle d2" d="M196 14 L198 22 L206 24 L198 26 L196 34 L194 26 L186 24 L194 22 Z" />
+            <path class="star-twinkle" d="M424 32 L426 40 L434 42 L426 44 L424 52 L422 44 L414 42 L422 40 Z" />
+            <path class="star-twinkle d3" d="M460 56 L461.5 62 L467 63.5 L461.5 65 L460 71 L458.5 65 L453 63.5 L458.5 62 Z" />
+            <path class="star-twinkle d2" d="M385 92 L387 100 L395 102 L387 104 L385 112 L383 104 L375 102 L383 100 Z" />
+            <path class="star-twinkle" d="M48 332 L50 341 L59 343 L50 345 L48 354 L46 345 L37 343 L46 341 Z" />
+            <path class="star-twinkle d3" d="M88 378 L90 387 L99 389 L90 391 L88 400 L86 391 L77 389 L86 387 Z" />
+            <path class="star-twinkle d2" d="M148 416 L149.5 423 L156 424.5 L149.5 426 L148 433 L146.5 426 L140 424.5 L146.5 423 Z" />
+            <path class="star-twinkle" d="M454 342 L456 351 L465 353 L456 355 L454 364 L452 355 L443 353 L452 351 Z" />
+            <path class="star-twinkle d2" d="M402 384 L404 393 L413 395 L404 397 L402 406 L400 397 L391 395 L400 393 Z" />
+            <path class="star-twinkle d3" d="M384 422 L385.5 429 L392 430.5 L385.5 432 L384 439 L382.5 432 L376 430.5 L382.5 429 Z" />
+          </g>
+
+          <!-- Isometric Room Shell -->
+          <!-- Left Wall -->
+          <polygon points="68,136 250,38 250,224 68,322" fill="#B5A689" stroke="#3B3127" stroke-width="1.6" />
+          <!-- Right Wall -->
+          <polygon points="250,38 432,136 432,322 250,224" fill="#A59578" stroke="#3B3127" stroke-width="1.6" />
+          <!-- Wooden Plank Floor -->
+          <polygon points="68,322 250,224 432,322 250,420" fill="#8C623E" stroke="#3B3127" stroke-width="1.6" />
+          <!-- Floor Plank Seams -->
+          <g stroke="#5E4026" stroke-width="1" opacity="0.65">
+            <line x1="98" y1="306" x2="280" y2="404" />
+            <line x1="128" y1="290" x2="310" y2="388" />
+            <line x1="158" y1="274" x2="340" y2="372" />
+            <line x1="188" y1="258" x2="370" y2="356" />
+            <line x1="218" y1="242" x2="400" y2="340" />
+          </g>
+
+          <!-- Sunset / Twilight Window on Right Wall -->
+          <g id="roomWindowGroup" onclick="movePipToSpot('window')" style="cursor:pointer;">
+            <polygon id="roomWindowGlass" points="295,106 378,150 378,224 295,180" fill="url(#roomSunsetGrad)" stroke="#4A3828" stroke-width="2" />
+            <!-- Window Crossbars -->
+            <line x1="336.5" y1="128" x2="336.5" y2="202" stroke="#4A3828" stroke-width="2" />
+            <line x1="295" y1="143" x2="378" y2="187" stroke="#4A3828" stroke-width="2" />
+            <!-- Windowsill -->
+            <polygon points="288,180 384,231 376,236 280,185" fill="#7D583A" stroke="#3B3127" stroke-width="1.3" />
+            <!-- Windowsill Candles & Potted Plant -->
+            <rect x="303" y="171" width="5" height="14" rx="1.5" fill="#FAF4E6" stroke="#3B3127" stroke-width="1" />
+            <ellipse class="candle-flame" cx="305.5" cy="168" rx="2" ry="3.5" fill="#FFBE3B" />
+            <rect x="313" y="167" width="6" height="22" rx="1.5" fill="#FAF4E6" stroke="#3B3127" stroke-width="1" />
+            <ellipse class="candle-flame" cx="316" cy="163.5" rx="2.2" ry="4" fill="#FFBE3B" />
+            <rect x="323" y="179" width="5" height="15" rx="1.5" fill="#FAF4E6" stroke="#3B3127" stroke-width="1" />
+            <ellipse class="candle-flame" cx="325.5" cy="176" rx="2" ry="3.2" fill="#FFBE3B" />
+            <!-- Terracotta Pot on Sill -->
+            <polygon points="354,196 368,203 365,217 357,213" fill="#B85C3A" stroke="#3B3127" stroke-width="1.2" />
+            <path d="M360 198 C356 184, 360 172, 362 166 M362 199 C368 186, 372 176, 370 168" stroke="#536E49" stroke-width="2" stroke-linecap="round" />
+            <circle cx="358" cy="182" r="3" fill="#8BA376" />
+            <circle cx="366" cy="178" r="3" fill="#8BA376" />
+            <circle cx="361" cy="171" r="3" fill="#9BB384" />
+          </g>
+
+          <!-- Sage-Green Window Curtains & Rod -->
+          <line x1="274" y1="74" x2="414" y2="149" stroke="#4D3727" stroke-width="3" stroke-linecap="round" />
+          <!-- Left Curtain -->
+          <path d="M278 77 Q294 115 280 155 Q272 175 278 196 L296 205 Q292 175 304 152 Q314 126 306 92 Z" fill="#94AD96" stroke="#3B3127" stroke-width="1.3" />
+          <!-- Right Curtain -->
+          <path d="M380 132 Q396 172 384 218 L404 232 Q414 190 406 146 Z" fill="#94AD96" stroke="#3B3127" stroke-width="1.3" />
+
+          <!-- Fairy String Lights Along Both Walls -->
+          <path d="M72 142 Q160 108 250 46 Q340 108 428 142" stroke="#4B3E2E" stroke-width="1.2" fill="none" />
+          <path d="M286 186 Q336 218 386 240" stroke="#4B3E2E" stroke-width="1.1" fill="none" />
+          <g fill="#FFE082">
+            <circle class="fairy-bulb" cx="92" cy="134" r="2.7" />
+            <circle class="fairy-bulb" cx="122" cy="121" r="2.7" />
+            <circle class="fairy-bulb" cx="152" cy="107" r="2.7" />
+            <circle class="fairy-bulb" cx="182" cy="91" r="2.7" />
+            <circle class="fairy-bulb" cx="212" cy="73" r="2.7" />
+            <circle class="fairy-bulb" cx="242" cy="52" r="2.7" />
+            <circle class="fairy-bulb" cx="272" cy="64" r="2.7" />
+            <circle class="fairy-bulb" cx="302" cy="83" r="2.7" />
+            <circle class="fairy-bulb" cx="332" cy="101" r="2.7" />
+            <circle class="fairy-bulb" cx="362" cy="117" r="2.7" />
+            <circle class="fairy-bulb" cx="392" cy="131" r="2.7" />
+            <circle class="fairy-bulb" cx="306" cy="198" r="2.3" />
+            <circle class="fairy-bulb" cx="336" cy="216" r="2.3" />
+            <circle class="fairy-bulb" cx="366" cy="231" r="2.3" />
+          </g>
+
+          <!-- Crescent Moon Wall Pennant on Left Wall -->
+          <g transform="translate(82, 166)">
+            <polygon points="0,12 24,0 24,38 12,48 0,50" fill="#463D4A" stroke="#2D2520" stroke-width="1.3" />
+            <path d="M14 17 A7 7 0 1 0 16 30 A5.5 5.5 0 1 1 14 17 Z" fill="#F2C45A" />
+          </g>
+
+          <!-- Wall Shelves & Lantern Above Bed -->
+          <polygon points="184,142 246,109 254,113 192,146" fill="#7D583A" stroke="#3B3127" stroke-width="1.2" />
+          <polygon points="184,182 246,149 254,153 192,186" fill="#7D583A" stroke="#3B3127" stroke-width="1.2" />
+          <!-- Storage Box & Lantern on Top Shelf -->
+          <polygon points="192,126 216,113 226,118 202,131" fill="#8C837A" stroke="#3B3127" stroke-width="1.1" />
+          <polygon points="192,126 202,131 202,141 192,136" fill="#756D65" stroke="#3B3127" stroke-width="1.1" />
+          <polygon points="202,131 226,118 226,128 202,141" fill="#635B54" stroke="#3B3127" stroke-width="1.1" />
+          <!-- Hanging/Shelf Lantern -->
+          <rect x="230" y="96" width="14" height="20" rx="3" fill="#593B25" stroke="#2D2218" stroke-width="1.2" />
+          <rect x="233" y="100" width="8" height="12" rx="1.5" fill="#FFE28A" />
+
+          <!-- Tall Wooden Bookshelf on Left Wall -->
+          <g>
+            <!-- Bookshelf Side & Front -->
+            <polygon points="108,176 176,139 194,149 126,186" fill="#6B3D24" stroke="#2E1C11" stroke-width="1.4" />
+            <polygon points="108,176 126,186 126,304 108,294" fill="#5C321C" stroke="#2E1C11" stroke-width="1.4" />
+            <polygon points="126,186 194,149 194,267 126,304" fill="#8C4A27" stroke="#2E1C11" stroke-width="1.4" />
+            <!-- Bookshelf Compartments -->
+            <polygon points="130,190 190,157 190,183 130,216" fill="#3B2316" />
+            <polygon points="130,222 190,189 190,215 130,248" fill="#3B2316" />
+            <!-- Colorful Book Spines -->
+            <g stroke="#2B1B12" stroke-width="0.8">
+              <polygon points="133,192 138,189 138,211 133,214" fill="#D99B52" />
+              <polygon points="139,189 144,186 144,208 139,211" fill="#7D9B76" />
+              <polygon points="145,186 150,183 150,205 145,208" fill="#E8DFCE" />
+              <polygon points="155,180 160,177 160,199 155,202" fill="#C46B4E" />
+              <polygon points="161,177 166,174 166,196 161,199" fill="#6B8E8A" />
+              <polygon points="172,171 178,168 178,190 172,193" fill="#E6C373" />
+              <polygon points="134,224 140,221 140,242 134,245" fill="#8FA889" />
+              <polygon points="141,220 147,217 147,238 141,241" fill="#DFD4C0" />
+              <polygon points="148,216 154,213 154,234 148,237" fill="#B85C3A" />
+            </g>
+            <!-- Potted Plants on Top of Bookshelf -->
+            <rect x="122" y="160" width="12" height="14" rx="2" fill="#E5DEC9" stroke="#3B3127" stroke-width="1.1" />
+            <circle cx="125" cy="154" r="5" fill="#79946A" />
+            <circle cx="132" cy="153" r="5" fill="#8FA87D" />
+            <rect x="146" y="148" width="12" height="14" rx="2" fill="#C9734B" stroke="#3B3127" stroke-width="1.1" />
+            <circle cx="149" cy="142" r="5.5" fill="#6E8A5F" />
+            <circle cx="156" cy="143" r="5" fill="#89A377" />
+          </g>
+
+          <!-- Monstera Floor Plant on Far Left -->
+          <g>
+            <rect x="86" y="274" width="18" height="22" rx="3" fill="#C88256" stroke="#3B3127" stroke-width="1.3" />
+            <line x1="88" y1="296" x2="88" y2="308" stroke="#4D3727" stroke-width="2" />
+            <line x1="102" y1="296" x2="102" y2="308" stroke="#4D3727" stroke-width="2" />
+            <path d="M95 274 C88 256, 76 246, 74 236 M95 274 C96 252, 104 240, 110 230 M95 274 C92 260, 82 264, 76 260" stroke="#536E49" stroke-width="2.2" stroke-linecap="round" />
+            <ellipse cx="74" cy="235" rx="9" ry="6" transform="rotate(-25 74 235)" fill="#849E6E" stroke="#3B3127" stroke-width="1.1" />
+            <ellipse cx="110" cy="229" rx="9" ry="6" transform="rotate(20 110 229)" fill="#769162" stroke="#3B3127" stroke-width="1.1" />
+            <ellipse cx="93" cy="242" rx="8" ry="5.5" fill="#92AB7B" stroke="#3B3127" stroke-width="1.1" />
+          </g>
+
+          <!-- Cozy Single Bed with Terracotta Blanket & Pillows (Clickable Spot: 'bed') -->
+          <g id="roomBedGroup" onclick="movePipToSpot('bed')" style="cursor:pointer;">
+            <!-- Wooden Headboard -->
+            <polygon points="196,198 244,172 244,216 196,242" fill="#8C5832" stroke="#3B2718" stroke-width="1.5" />
+            <!-- Mattress Base -->
+            <polygon points="198,236 246,210 344,263 296,289" fill="#E8DEC8" stroke="#3B2718" stroke-width="1.4" />
+            <!-- Terracotta Duvet Blanket -->
+            <polygon points="222,223 250,208 346,260 318,275" fill="#C4683B" stroke="#3B2718" stroke-width="1.4" />
+            <polygon points="222,223 318,275 318,291 222,239" fill="#AE562D" stroke="#3B2718" stroke-width="1.4" />
+            <polygon points="318,275 346,260 346,276 318,291" fill="#964622" stroke="#3B2718" stroke-width="1.4" />
+            <!-- Bed Pillows -->
+            <ellipse cx="222" cy="220" rx="14" ry="8" transform="rotate(-24 222 220)" fill="#E6CFA3" stroke="#3B2718" stroke-width="1.3" />
+            <circle cx="243" cy="208" r="9" fill="#D49B4B" stroke="#3B2718" stroke-width="1.3" />
+            <ellipse cx="262" cy="214" rx="12" ry="6" transform="rotate(26 262 214)" fill="#B54938" stroke="#3B2718" stroke-width="1.3" />
+          </g>
+
+          <!-- Nightstand & Glowing Floor Lamp on Right -->
+          <g>
+            <polygon points="324,274 356,257 382,271 350,288" fill="#7D4325" stroke="#2E1C11" stroke-width="1.3" />
+            <polygon points="324,274 350,288 350,318 324,304" fill="#69351B" stroke="#2E1C11" stroke-width="1.3" />
+            <polygon points="350,288 382,271 382,301 350,318" fill="#572B15" stroke="#2E1C11" stroke-width="1.3" />
+            <!-- Floor Lamp -->
+            <ellipse id="lampFloorHalo" cx="394" cy="276" rx="52" ry="68" fill="url(#floorLampGlow)" />
+            <ellipse cx="394" cy="322" rx="14" ry="7" fill="#69462A" stroke="#2E1C11" stroke-width="1.3" />
+            <line x1="394" y1="242" x2="394" y2="322" stroke="#593B25" stroke-width="3" />
+            <polygon points="382,216 406,216 414,244 374,244" fill="#E3B354" stroke="#3B2718" stroke-width="1.4" />
+          </g>
+
+          <!-- Fluffy Cream Area Rug & Round Terracotta Rug (Clickable Spot: 'rug') -->
+          <g id="roomRugGroup" onclick="movePipToSpot('rug')" style="cursor:pointer;">
+            <!-- Round Terracotta Accent Rug -->
+            <ellipse cx="268" cy="356" rx="44" ry="24" fill="#C97A42" stroke="#3B2718" stroke-width="1.3" />
+            <ellipse cx="268" cy="356" rx="28" ry="15" fill="#E39E54" />
+            <!-- Fluffy Cream Rug -->
+            <polygon points="116,322 214,269 294,312 196,365" fill="#F2ECE0" stroke="#8C7E6A" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- Low Wooden Coffee Table with Laptop & Sketch Papers -->
+            <polygon points="148,308 206,277 254,303 196,334" fill="#A66B3E" stroke="#3B2718" stroke-width="1.4" />
+            <line x1="152" y1="310" x2="152" y2="332" stroke="#5E3A1E" stroke-width="3" />
+            <line x1="196" y1="334" x2="196" y2="356" stroke="#5E3A1E" stroke-width="3" />
+            <line x1="250" y1="305" x2="250" y2="327" stroke="#5E3A1E" stroke-width="3" />
+            <!-- Mini Laptop & Papers on Table -->
+            <polygon points="198,296 218,285 234,294 214,305" fill="#DED7C8" stroke="#3B2718" stroke-width="1.1" />
+            <polygon points="218,285 234,294 234,277 218,268" fill="#FAF6ED" stroke="#3B2718" stroke-width="1.1" />
+            <polygon points="172,306 188,298 200,305 184,313" fill="#FAF8F2" stroke="#5C5349" stroke-width="0.9" />
+            <!-- Floor Cushion -->
+            <ellipse cx="162" cy="340" rx="15" ry="9" fill="#D99B4E" stroke="#3B2718" stroke-width="1.2" />
+          </g>
+
+          <!-- Tufted Sage Storage Bench in Front-Right -->
+          <g>
+            <polygon points="280,352 356,311 392,331 316,372" fill="#8C9E89" stroke="#3B3127" stroke-width="1.4" />
+            <polygon points="280,352 316,372 316,396 280,376" fill="#7D5434" stroke="#3B3127" stroke-width="1.4" />
+            <polygon points="316,372 392,331 392,355 316,396" fill="#694429" stroke="#3B3127" stroke-width="1.4" />
+          </g>
+
+          <!-- Interactive Pip Character Inside the Isometric Room -->
+          <g id="pipRoomCharacter" transform="translate(216, 326)" onclick="interactWithRoomPip(event)">
+            <!-- Soft Contact Shadow -->
+            <ellipse cx="0" cy="18" rx="18" ry="8" fill="#2E2318" opacity="0.28" />
+            <!-- Leaf Ears -->
+            <path d="M-11 -16 C-18 -24, -19 -31, -12 -32 C-7 -32, -5 -24, -7 -18 Z" fill="#637A68" stroke="#26221E" stroke-width="1.8" />
+            <path d="M11 -16 C18 -24, 19 -31, 12 -32 C7 -32, 5 -24, 7 -18 Z" fill="#637A68" stroke="#26221E" stroke-width="1.8" />
+            <!-- Cream Bouclé Body -->
+            <path d="M-17 2 C-17 -13, -10 -19, 0 -19 C10 -19, 17 -13, 17 2 C17 13, 11 18, 0 18 C-11 18, -17 13, -17 2 Z" fill="#F5EDE0" stroke="#26221E" stroke-width="2" />
+            <!-- Rosy Cheeks -->
+            <ellipse cx="-10" cy="1" rx="2.6" ry="1.6" fill="#D98B78" opacity="0.7" />
+            <ellipse cx="10" cy="1" rx="2.6" ry="1.6" fill="#D98B78" opacity="0.7" />
+            <!-- Eyes (Open vs Sleeping) -->
+            <g id="pipEyesAwake">
+              <circle cx="-6.5" cy="-3" r="2.2" fill="#26221E" />
+              <circle cx="6.5" cy="-3" r="2.2" fill="#26221E" />
+            </g>
+            <g id="pipEyesSleep" style="display:none;">
+              <path d="M-9 -3 Q-6.5 -0.5 -4 -3" stroke="#26221E" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M4 -3 Q6.5 -0.5 9 -3" stroke="#26221E" stroke-width="1.8" stroke-linecap="round" />
+            </g>
+            <!-- Smile -->
+            <path d="M-3 1.5 Q0 4.5 3 1.5" stroke="#26221E" stroke-width="1.8" stroke-linecap="round" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Room Status & Treat Hint Bar -->
+      <div class="pip-room-status-bar">
+        <span id="pipRoomStatusText">pip is relaxing on the fluffy rug · tap pip or any cozy spot</span>
+        <span style="font-size:11px; color:var(--sage); font-weight:600;">+1 treat per completed task</span>
+      </div>
+
+      <!-- Tactile Bouclé Room Action Pills -->
+      <div class="pip-room-controls">
+        <button type="button" class="pill-btn ochre" onclick="feedPipInRoom(event)">give treat (1)</button>
+        <button type="button" class="pill-btn sage" onclick="interactWithRoomPip(event)">pet pip</button>
+        <button type="button" id="roomAmbianceBtn" class="pill-btn mist" onclick="toggleRoomAmbiance()">wind-down nap</button>
+      </div>
     </div>
-  </aside>
+  </div>
 
   <!-- Sync & Firebase Modal -->
   <div id="syncModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'syncModal')">
@@ -1258,30 +1726,11 @@
         <div class="tools-grid">
           <button type="button" class="pill-btn" onclick="downloadPwaFile('index.html')">1. index.html</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('manifest.json')">2. manifest.json</button>
-          <button type="button" class="pill-btn" onclick="downloadPwaFile('sw.js')">3. sw.js (v10)</button>
+          <button type="button" class="pill-btn" onclick="downloadPwaFile('sw.js')">3. sw.js (v13)</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('icon-192.png')">4. icon-192.png</button>
           <button type="button" class="pill-btn" onclick="downloadPwaFile('icon-512.png')">5. icon-512.png</button>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Evening Wind-Down Mood Rater Modal -->
-  <div id="windDownModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'windDownModal')">
-    <div class="modal-card">
-      <div class="card-header" style="margin-bottom:0;">
-        <strong style="font-size:15px;">evening wind-down check-in</strong>
-        <button type="button" class="pill-btn" style="min-height:30px; padding:4px 12px;" onclick="closeModal('windDownModal')">close</button>
-      </div>
-      <p style="margin:0; font-size:13px; color:var(--text-muted);">how did today feel? logging a check-in gives pip a cozy treat.</p>
-      <div class="mood-grid">
-        <button type="button" class="mood-btn" onclick="selectWindDownMood(this, 'calm')"><span>calm</span></button>
-        <button type="button" class="mood-btn" onclick="selectWindDownMood(this, 'steady')"><span>steady</span></button>
-        <button type="button" class="mood-btn" onclick="selectWindDownMood(this, 'foggy')"><span>foggy</span></button>
-        <button type="button" class="mood-btn" onclick="selectWindDownMood(this, 'tired')"><span>tired</span></button>
-      </div>
-      <textarea id="windDownNoteInput" class="capture-textarea" style="min-height:60px;" placeholder="optional one-line reflection..."></textarea>
-      <button type="button" class="solid-btn" onclick="saveWindDownLog()">save &amp; give pip +1 treat</button>
     </div>
   </div>
 
@@ -1306,7 +1755,16 @@
   <!-- Firebase v11 Modular SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signInAnonymously, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signInWithRedirect,
+      getRedirectResult,
+      signInAnonymously,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
     import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
     const DEFAULT_FIREBASE_CONFIG = {
@@ -1370,13 +1828,12 @@
     window.pushStateToCloud = async function(stateSnapshot) {
       if (!db || !currentUser || isApplyingRemote) return;
       try {
-        const ref = doc(db, "artifacts", "stillwater-hub", "users", currentUser.uid, "state", "main");
+        const ref = doc(db, "users", currentUser.uid, "stillwater", "state");
         await setDoc(ref, {
           categories: stateSnapshot.categories,
           tasks: stateSnapshot.tasks,
           calendarEvents: stateSnapshot.calendarEvents,
           pipTreats: stateSnapshot.pipTreats,
-          windDownLogs: stateSnapshot.windDownLogs,
           updatedAt: Date.now()
         }, { merge: true });
       } catch (err) {
@@ -1385,6 +1842,19 @@
     };
 
     if (auth) {
+      getRedirectResult(auth)
+        .then((res) => {
+          if (res && res.user) {
+            window.showToast("signed in & syncing");
+            window.closeModal("syncModal");
+          }
+        })
+        .catch((err) => {
+          if (err && err.code) {
+            window.showToast("sign-in notice: " + err.code);
+          }
+        });
+
       onAuthStateChanged(auth, (user) => {
         currentUser = user;
         updateSyncUI(user);
@@ -1393,7 +1863,7 @@
           unsubFirestore = null;
         }
         if (user && db) {
-          const ref = doc(db, "artifacts", "stillwater-hub", "users", user.uid, "state", "main");
+          const ref = doc(db, "users", user.uid, "stillwater", "state");
           unsubFirestore = onSnapshot(ref, (snap) => {
             if (!snap.exists()) {
               if (window.appState) window.pushStateToCloud(window.appState);
@@ -1407,7 +1877,6 @@
               window.appState.tasks = Array.isArray(data.tasks) ? data.tasks : [];
               window.appState.calendarEvents = Array.isArray(data.calendarEvents) ? data.calendarEvents : [];
               window.appState.pipTreats = typeof data.pipTreats === "number" ? data.pipTreats : window.appState.pipTreats;
-              window.appState.windDownLogs = Array.isArray(data.windDownLogs) ? data.windDownLogs : [];
               window.appState.updatedAt = data.updatedAt;
               window.saveLocalOnly();
               window.renderAll();
@@ -1418,14 +1887,35 @@
       });
     }
 
+    function isMobileOrStandalonePwa() {
+      const ua = navigator.userAgent || "";
+      const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      const isStandalone = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+      return isMobile || isStandalone;
+    }
+
     window.signInWithGoogle = async function() {
       if (!auth) return window.showToast("firebase auth unavailable");
+      const provider = new GoogleAuthProvider();
       try {
-        const provider = new GoogleAuthProvider();
+        if (isMobileOrStandalonePwa()) {
+          window.showToast("opening google sign-in...");
+          await signInWithRedirect(auth, provider);
+          return;
+        }
         await signInWithPopup(auth, provider);
         window.showToast("signed in & syncing");
         window.closeModal("syncModal");
       } catch (err) {
+        if (err && (err.code === "auth/popup-blocked" || err.code === "auth/operation-not-supported-in-this-environment")) {
+          try {
+            await signInWithRedirect(auth, provider);
+            return;
+          } catch (redirErr) {
+            window.showToast("sign-in notice: " + (redirErr.code || redirErr.message));
+            return;
+          }
+        }
         window.showToast("sign-in notice: " + (err.code || err.message));
       }
     };
@@ -1455,13 +1945,13 @@
   <!-- Core Application Logic -->
   <script>
     /* =========================================================================
-       1. SELF-HEALING SERVICE WORKER & CACHE RESET ('stillwater-v10')
+       1. SELF-HEALING SERVICE WORKER & CACHE RESET ('stillwater-v13')
        ========================================================================= */
     (async function selfHealServiceWorkers() {
       try {
         if ("caches" in window) {
           const keys = await caches.keys();
-          await Promise.all(keys.filter(k => k !== "stillwater-v10").map(k => caches.delete(k)));
+          await Promise.all(keys.filter(k => k !== "stillwater-v13").map(k => caches.delete(k)));
         }
         if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
           const regs = await navigator.serviceWorker.getRegistrations();
@@ -1474,9 +1964,12 @@
     })();
 
     /* =========================================================================
-       2. CLEAN-SLATE INITIAL STATE
+       2. CLEAN-SLATE INITIAL STATE & GEMINI CONFIG STORAGE
        ========================================================================= */
     const STORAGE_KEY = "stillwater_clean_v10";
+    const GEMINI_KEY_STORAGE = "stillwater_gemini_api_key";
+    const GEMINI_MODEL_STORAGE = "stillwater_gemini_model";
+
     const DEFAULT_CATEGORIES = [
       { id: "today", name: "today" },
       { id: "errands", name: "errands" },
@@ -1493,8 +1986,8 @@
         activeView: "tasks",
         selectedDate: new Date().toISOString().slice(0, 10),
         pipTreats: 2,
-        pipMinimized: false,
-        windDownLogs: [],
+        pipSpot: "rug",
+        pipNightMode: false,
         lampOn: false,
         lampWarmth: 0.42,
         lampDim: 0.12,
@@ -1514,8 +2007,7 @@
           ...parsed,
           categories: Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : base.categories,
           tasks: Array.isArray(parsed.tasks) ? parsed.tasks : [],
-          calendarEvents: Array.isArray(parsed.calendarEvents) ? parsed.calendarEvents : [],
-          windDownLogs: Array.isArray(parsed.windDownLogs) ? parsed.windDownLogs : []
+          calendarEvents: Array.isArray(parsed.calendarEvents) ? parsed.calendarEvents : []
         };
       } catch (e) {
         return createCleanState();
@@ -1527,8 +2019,28 @@
     let deferredInstallPrompt = null;
     let recognition = null;
     let isListening = false;
-    let selectedMood = "calm";
     let tourIndex = 0;
+
+    function getGeminiApiKey() {
+      try { return (localStorage.getItem(GEMINI_KEY_STORAGE) || "").trim(); } catch (e) { return ""; }
+    }
+
+    function getGeminiModel() {
+      try { return localStorage.getItem(GEMINI_MODEL_STORAGE) || "gemini-2.5-flash"; } catch (e) { return "gemini-2.5-flash"; }
+    }
+
+    function updateParserModeBadge() {
+      const badge = document.getElementById("parserModeBadge");
+      if (!badge) return;
+      const hasKey = Boolean(getGeminiApiKey());
+      if (hasKey) {
+        badge.textContent = "gemini ai + smart fallback";
+        badge.classList.add("gemini-ready");
+      } else {
+        badge.textContent = "smart on-device parser";
+        badge.classList.remove("gemini-ready");
+      }
+    }
 
     window.saveLocalOnly = function() {
       try {
@@ -1554,7 +2066,7 @@
       el.textContent = msg;
       el.classList.add("show");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => el.classList.remove("show"), 2600);
+      toastTimer = setTimeout(() => el.classList.remove("show"), 2900);
     };
 
     function openModal(id) {
@@ -1579,7 +2091,6 @@
         if (inp) inp.focus();
       }, 60);
     }
-    function openWindDownModal() { openModal("windDownModal"); }
 
     /* =========================================================================
        4. INTRO SCENE (WATER DROP + SWIRL)
@@ -1597,7 +2108,6 @@
       const overlay = document.getElementById("introOverlay");
       if (!overlay) return;
       overlay.classList.remove("hidden", "hiding");
-      // Restart animations cleanly
       const stage = overlay.querySelector(".intro-stage");
       if (stage) {
         const clone = stage.cloneNode(true);
@@ -1611,11 +2121,12 @@
       if (e.key === "Escape") {
         dismissIntro();
         hideLampDock();
+        closePipRoom();
       }
     });
 
     /* =========================================================================
-       5. MOBILE OPTICAL READING LAMP (ZERO HAZE + DONE DISMISS)
+       5. OPTICAL READING LAMP (TOP-RIGHT ON DESKTOP, ZERO HAZE + DONE DISMISS)
        ========================================================================= */
     function applyLampVisuals() {
       document.documentElement.style.setProperty("--lamp-warmth", window.appState.lampWarmth);
@@ -1686,7 +2197,6 @@
       persistState();
     }
 
-    // Dismiss floating lamp dock when tapping outside on page
     document.addEventListener("click", (e) => {
       const dock = document.getElementById("lampDock");
       const btn = document.getElementById("lampToggleBtn");
@@ -1697,7 +2207,7 @@
     });
 
     /* =========================================================================
-       6. VOICE & TEXT SMART CAPTURE
+       6. VOICE & PHOTO CAPTURE + GEMINI AI & ON-DEVICE RAMBLE PARSER
        ========================================================================= */
     function initSpeechRecognition() {
       const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1712,7 +2222,7 @@
           transcript += event.results[i][0].transcript;
         }
         const box = document.getElementById("captureInput");
-        if (box) box.value = transcript.toLowerCase();
+        if (box) box.value = transcript;
       };
       rec.onend = () => {
         isListening = false;
@@ -1783,49 +2293,250 @@
       `).join("");
     }
 
-    function routeTextToCategory(text) {
-      const lower = text.toLowerCase();
-      // Check custom/existing category names first
-      for (const cat of window.appState.categories) {
-        const cleanName = cat.name.replace(/^@/, "").toLowerCase();
-        if (cleanName !== "today" && lower.includes(cleanName)) {
-          return cat.id;
-        }
+    function splitRambleOnDevice(rawText) {
+      const protectedPairs = [
+        [/\bmilk and eggs\b/gi, "milk_AND_eggs"],
+        [/\bmac and cheese\b/gi, "mac_AND_cheese"],
+        [/\bsalt and pepper\b/gi, "salt_AND_pepper"],
+        [/\bbread and butter\b/gi, "bread_AND_butter"],
+        [/\bpeanut butter and jelly\b/gi, "peanut_butter_AND_jelly"],
+        [/\bchips and salsa\b/gi, "chips_AND_salsa"],
+        [/\bwash and dry\b/gi, "wash_AND_dry"],
+        [/\bblack and white\b/gi, "black_AND_white"]
+      ];
+
+      let working = rawText.trim();
+      for (const [regex, token] of protectedPairs) {
+        working = working.replace(regex, token);
       }
-      if (/\b(waiting|follow up|reply|package|tracking|order|pending)\b/.test(lower)) {
-        return "waiting";
-      }
-      if (/\b(buy|store|grocery|groceries|errand|pick up|pickup|drop off|bank|pharmacy|post office)\b/.test(lower)) {
-        return "errands";
-      }
-      if (/\b(idea|brainstorm|sketch|concept|maybe|someday|design|note)\b/.test(lower)) {
-        return "ideas";
-      }
-      if (window.appState.activeCategory !== "all") {
-        return window.appState.activeCategory;
-      }
-      return "today";
+
+      const splitRegex = /(?:\n+)|(?:\s*;\s*)|(?:[.!?]+(?:\s+|$))|(?:^\s*\d+[.)]\s*)|(?:\s+(?:and\s+also|also|oh\s+and|plus|and\s+then|then\s+i\s+need\s+to|and\s+don'?t\s+forget(?:\s+to)?|and\s+remember\s+to|and\s+make\s+sure\s+(?:i|to))\s+)|(?:,\s+(?:and\s+)?(?=(?:i\s+(?:need|have|gotta|should|want|must)|don'?t\s+forget|remember\s+to|make\s+sure|pick\s+up|grab|buy|get|call|text|email|message|reply|send|check|fix|clean|book|pay|schedule|finish|write|sketch|order|return|drop\s+off|look\s+into|research|follow\s+up)\b))/gi;
+
+      const rawChunks = working
+        .split(splitRegex)
+        .map(s => (s || "").replace(/_AND_/g, " and ").trim())
+        .filter(s => s.length > 1);
+
+      return rawChunks.length ? rawChunks : [rawText.trim()];
     }
 
-    function smartSortAndAdd() {
+    function paraphraseChunkOnDevice(chunk) {
+      let text = chunk.trim();
+
+      const leadFillers = [
+        /^(?:um+|uh+|so+|okay|alright|well|like|basically|actually|hey|oh)[,\s]+/i,
+        /^(?:and|also|plus|then)[,\s]+/i,
+        /^(?:i\s+(?:really\s+)?(?:need|have|gotta|got|want|would\s+like|should|must)\s+to\s+)/i,
+        /^(?:we\s+(?:really\s+)?(?:need|have|gotta|should)\s+to\s+)/i,
+        /^(?:don'?t\s+forget\s+to\s+)/i,
+        /^(?:remember\s+to\s+)/i,
+        /^(?:make\s+sure\s+(?:i|we|to)\s+)/i,
+        /^(?:can\s+(?:we|i|you)\s+(?:please\s+)?)/i,
+        /^(?:just\s+(?:need\s+to\s+)?)/i,
+        /^(?:i'?m\s+thinking\s+(?:about|of)\s+)/i,
+        /^(?:i\s+have\s+an?\s+idea\s+(?:to|for|about)\s+)/i
+      ];
+
+      let changed = true;
+      while (changed) {
+        changed = false;
+        for (const rx of leadFillers) {
+          const next = text.replace(rx, "");
+          if (next !== text) {
+            text = next.trim();
+            changed = true;
+          }
+        }
+      }
+
+      text = text
+        .replace(/\s+(?:or\s+something|or\s+whatever|if\s+possible|when\s+i\s+get\s+a\s+chance|at\s+some\s+point)\s*$/i, "")
+        .replace(/\s{2,}/g, " ")
+        .replace(/[,.;:]+$/, "")
+        .trim();
+
+      text = text.replace(/^i(?:'m|\s+am)\s+waiting\s+(?:on|for)\s+/i, "waiting on ");
+
+      const tags = [];
+      const explicitTags = text.match(/#[a-z0-9_-]+/gi);
+      if (explicitTags) {
+        explicitTags.forEach(t => {
+          const clean = t.toLowerCase();
+          if (!tags.includes(clean) && tags.length < 2) tags.push(clean);
+        });
+        text = text.replace(/#[a-z0-9_-]+/gi, "").replace(/\s{2,}/g, " ").trim();
+      }
+
+      const lower = text.toLowerCase();
+      if (tags.length < 2) {
+        if (/\b(grocery|groceries|milk|eggs|produce|supermarket|walmart|target|costco)\b/.test(lower)) tags.push("#groceries");
+        else if (/\b(email|call|text|message|dm|reply|meeting|zoom)\b/.test(lower)) tags.push("#comms");
+        else if (/\b(package|delivery|tracking|order|shipped|return)\b/.test(lower)) tags.push("#delivery");
+        else if (/\b(sketch|design|idea|concept|brainstorm|draft)\b/.test(lower)) tags.push("#creative");
+      }
+
+      const urgent = /\b(urgent|asap|right\s+now|today|tonight|before\s+\d|by\s+\d|deadline|due\s+today)\b/i.test(lower);
+
+      let categoryId = "today";
+      let matchedCustom = false;
+      for (const cat of window.appState.categories) {
+        const cleanName = cat.name.replace(/^@/, "").toLowerCase();
+        if (cleanName !== "today" && cleanName.length > 2 && lower.includes(cleanName)) {
+          categoryId = cat.id;
+          matchedCustom = true;
+          break;
+        }
+      }
+
+      if (!matchedCustom) {
+        if (/\b(waiting\s+on|waiting\s+for|follow\s+up|pending|tracking|shipped|backordered|hear\s+back)\b/.test(lower)) {
+          categoryId = "waiting";
+        } else if (/\b(buy|store|grocery|groceries|errand|pick\s+up|pickup|drop\s+off|bank|pharmacy|post\s+office|walmart|target|costco|gas|hardware)\b/.test(lower)) {
+          categoryId = "errands";
+        } else if (/\b(idea|brainstorm|sketch|concept|maybe|someday|design|note|explore|what\s+if)\b/.test(lower)) {
+          categoryId = "ideas";
+        } else if (window.appState.activeCategory !== "all") {
+          categoryId = window.appState.activeCategory;
+        }
+      }
+
+      return {
+        text: (text || chunk).toLowerCase(),
+        categoryId,
+        tags: tags.slice(0, 2),
+        urgent
+      };
+    }
+
+    function parseRambleOnDevice(rawText) {
+      const chunks = splitRambleOnDevice(rawText);
+      return chunks.map(paraphraseChunkOnDevice);
+    }
+
+    async function parseRambleWithGemini(rawText, apiKey) {
+      const model = getGeminiModel();
+      const categoryList = window.appState.categories.map(c => ({ id: c.id, name: c.name }));
+      const activeCatHint = window.appState.activeCategory !== "all" ? window.appState.activeCategory : "today";
+
+      const systemPrompt = `You are the calm, minimalist task parser for "stillwater".
+Given a raw voice or text ramble, split multi-part thoughts into clean, atomic, actionable tasks.
+Rules:
+1. Paraphrase each item into a concise, natural, lowercase action phrase (strip filler like "i need to", "um", "don't forget to", fix rambling grammar, keep every concrete detail, person, store, or time).
+2. Assign each task to the single best matching categoryId from the user's available categories: ${JSON.stringify(categoryList)}. If ambiguous, default to "${activeCatHint}".
+3. Include up to 2 short lowercase #tags per task (e.g. ["#groceries"]) and set urgent: true only if time-sensitive today/tonight/ASAP.
+4. Return ONLY valid JSON matching the schema.`;
+
+      const payload = {
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: `Ramble input: "${rawText}"` }]
+          }
+        ],
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        },
+        generationConfig: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: "ARRAY",
+            items: {
+              type: "OBJECT",
+              properties: {
+                text: { type: "STRING" },
+                categoryId: { type: "STRING" },
+                tags: {
+                  type: "ARRAY",
+                  items: { type: "STRING" }
+                },
+                urgent: { type: "BOOLEAN" }
+              },
+              required: ["text", "categoryId", "tags", "urgent"]
+            }
+          }
+        }
+      };
+
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Gemini HTTP ${response.status}`);
+      }
+
+      const result = await response.json();
+      const jsonText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!jsonText) throw new Error("Empty Gemini response");
+
+      const parsed = JSON.parse(jsonText);
+      if (!Array.isArray(parsed) || parsed.length === 0) throw new Error("Invalid Gemini array");
+
+      const validIds = new Set(window.appState.categories.map(c => c.id));
+      return parsed.map(item => ({
+        text: String(item.text || "").trim().toLowerCase(),
+        categoryId: validIds.has(item.categoryId) ? item.categoryId : activeCatHint,
+        tags: Array.isArray(item.tags)
+          ? item.tags.map(t => (String(t).startsWith("#") ? String(t).toLowerCase() : "#" + String(t).toLowerCase())).slice(0, 2)
+          : [],
+        urgent: Boolean(item.urgent)
+      })).filter(item => item.text.length > 0);
+    }
+
+    async function smartSortAndAdd() {
       const box = document.getElementById("captureInput");
+      const sortBtn = document.getElementById("smartSortBtn");
       const raw = (box?.value || "").trim();
+
       if (!raw && pendingPhotos.length === 0) {
         showToast("type or speak a thought first");
         return;
       }
 
-      const chunks = raw
-        ? raw.split(/\n+|(?:\.\s+)|(?:,\s+(?=(?:buy|call|email|pick up|grab|check|send|fix|book|pay|clean|finish|write)\b))/i).map(s => s.trim()).filter(Boolean)
-        : ["attached photo note"];
+      let parsedItems = [];
+      let sourceLabel = "smart split";
 
-      chunks.forEach((chunk, index) => {
-        const catId = routeTextToCategory(chunk);
+      if (!raw && pendingPhotos.length > 0) {
+        const catId = window.appState.activeCategory !== "all" ? window.appState.activeCategory : "today";
+        parsedItems = [{ text: "attached photo note", categoryId: catId, tags: ["#photo"], urgent: false }];
+      } else {
+        const apiKey = getGeminiApiKey();
+        if (apiKey && navigator.onLine) {
+          try {
+            if (sortBtn) {
+              sortBtn.disabled = true;
+              sortBtn.textContent = "sorting & paraphrasing...";
+            }
+            parsedItems = await parseRambleWithGemini(raw, apiKey);
+            sourceLabel = "gemini ai";
+          } catch (err) {
+            console.warn("Gemini fallback triggered:", err.message);
+            parsedItems = parseRambleOnDevice(raw);
+            sourceLabel = "smart fallback";
+          } finally {
+            if (sortBtn) {
+              sortBtn.disabled = false;
+              sortBtn.textContent = "smart sort & add";
+            }
+          }
+        } else {
+          parsedItems = parseRambleOnDevice(raw);
+          sourceLabel = "smart split";
+        }
+      }
+
+      parsedItems.forEach((item, index) => {
         window.appState.tasks.unshift({
           id: "t_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
-          text: chunk.toLowerCase(),
-          categoryId: catId,
+          text: item.text,
+          categoryId: item.categoryId,
+          tags: item.tags || [],
+          urgent: Boolean(item.urgent),
           completed: false,
+          treatAwarded: false,
           big3: false,
           photo: index === 0 && pendingPhotos.length ? pendingPhotos[0] : null,
           createdAt: Date.now()
@@ -1837,11 +2548,11 @@
       renderPendingPhotos();
       persistState();
       renderAll();
-      showToast(`added ${chunks.length} item${chunks.length > 1 ? "s" : ""}`);
+      showToast(`added ${parsedItems.length} task${parsedItems.length > 1 ? "s" : ""} via ${sourceLabel}`);
     }
 
     /* =========================================================================
-       7. CATEGORIES, TASKS, BIG 3, CALENDAR & TOOLS RENDERING
+       7. CATEGORIES, TASKS (+1 TREAT REWARD), BIG 3, CALENDAR & TOOLS
        ========================================================================= */
     function selectCategory(catId) {
       window.appState.activeCategory = catId;
@@ -1877,7 +2588,15 @@
       const task = window.appState.tasks.find(t => t.id === taskId);
       if (!task) return;
       task.completed = !task.completed;
-      if (task.completed) task.big3 = false;
+      if (task.completed) {
+        task.big3 = false;
+        if (!task.treatAwarded) {
+          task.treatAwarded = true;
+          window.appState.pipTreats = (window.appState.pipTreats || 0) + 1;
+          pulsePipTrigger();
+          showToast("task done · +1 treat earned for pip");
+        }
+      }
       persistState();
       renderAll();
     }
@@ -1957,6 +2676,11 @@
 
     function renderTaskCardHtml(task) {
       const catName = getCategoryLabel(task.categoryId);
+      const tagsHtml = Array.isArray(task.tags)
+        ? task.tags.map(tag => `<span class="tag-badge">${escapeHtml(tag)}</span>`).join("")
+        : "";
+      const urgentHtml = task.urgent && !task.completed ? `<span class="urgent-badge">today-critical</span>` : "";
+
       return `
         <div class="task-item">
           <button type="button" class="task-check ${task.completed ? "checked" : ""}" onclick="toggleTaskComplete('${task.id}')" aria-label="toggle complete">
@@ -1967,6 +2691,8 @@
             ${task.photo ? `<img src="${task.photo}" alt="task attachment" style="max-width:140px; border-radius:12px; border:1px solid var(--paper-edge);" />` : ""}
             <div class="task-meta">
               <span class="zone-badge">${escapeHtml(catName)}</span>
+              ${urgentHtml}
+              ${tagsHtml}
               ${!task.completed ? `<button type="button" class="icon-btn ${task.big3 ? "starred" : ""}" onclick="toggleTaskBig3('${task.id}')">${task.big3 ? "★ big 3" : "☆ big 3"}</button>` : ""}
               <button type="button" class="icon-btn" onclick="deleteTask('${task.id}')">remove</button>
             </div>
@@ -2067,9 +2793,36 @@
 
       if (view === "tools") {
         const baseUrl = location.origin + location.pathname;
+        const savedKey = getGeminiApiKey();
+        const savedModel = getGeminiModel();
         container.innerHTML = `
-          <section class="paper-card" style="display:flex; flex-direction:column; gap:14px;">
+          <section class="paper-card" style="display:flex; flex-direction:column; gap:16px;">
             <div>
+              <div class="card-header" style="margin-bottom:4px;">
+                <span class="card-title">smart ramble ai (optional gemini key)</span>
+                <span class="zone-badge">${savedKey ? "gemini key active" : "on-device fallback active"}</span>
+              </div>
+              <div class="card-sub" style="margin-bottom:8px;">
+                paste an optional google ai studio api key for ai paraphrasing, multi-task splitting &amp; auto-tagging. if left blank or offline, <strong>smart sort &amp; add</strong> automatically uses the built-in on-device paraphraser &amp; splitter.
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div class="api-key-row">
+                  <input id="geminiApiKeyInput" type="password" class="clean-input" value="${escapeHtml(savedKey)}" placeholder="AIzaSy... (optional google ai studio key)" />
+                  <button type="button" id="toggleKeyVisBtn" class="pill-btn" onclick="toggleGeminiKeyVisibility()">show</button>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                  <select id="geminiModelSelect" class="clean-input" style="width:auto; min-width:175px;">
+                    <option value="gemini-2.5-flash" ${savedModel === "gemini-2.5-flash" ? "selected" : ""}>gemini-2.5-flash (recommended)</option>
+                    <option value="gemini-2.5-flash-lite" ${savedModel === "gemini-2.5-flash-lite" ? "selected" : ""}>gemini-2.5-flash-lite (fast)</option>
+                  </select>
+                  <button type="button" class="pill-btn sage" onclick="saveGeminiSettings()">save key</button>
+                  <button type="button" class="pill-btn mist" onclick="testGeminiApiKey()">test key</button>
+                  <button type="button" class="pill-btn terra" onclick="clearGeminiSettings()">clear</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid var(--paper-edge); padding-top:12px;">
               <div class="card-title" style="margin-bottom:4px;">nfc tag &amp; shortcut links</div>
               <div class="card-sub" style="margin-bottom:8px;">write these urls onto physical nfc tags for instant hands-free launch:</div>
               <div class="tools-grid">
@@ -2093,6 +2846,61 @@
             </div>
           </section>
         `;
+      }
+    }
+
+    function toggleGeminiKeyVisibility() {
+      const inp = document.getElementById("geminiApiKeyInput");
+      const btn = document.getElementById("toggleKeyVisBtn");
+      if (!inp) return;
+      if (inp.type === "password") {
+        inp.type = "text";
+        if (btn) btn.textContent = "hide";
+      } else {
+        inp.type = "password";
+        if (btn) btn.textContent = "show";
+      }
+    }
+
+    function saveGeminiSettings() {
+      const key = (document.getElementById("geminiApiKeyInput")?.value || "").trim();
+      const model = document.getElementById("geminiModelSelect")?.value || "gemini-2.5-flash";
+      try {
+        if (key) localStorage.setItem(GEMINI_KEY_STORAGE, key);
+        else localStorage.removeItem(GEMINI_KEY_STORAGE);
+        localStorage.setItem(GEMINI_MODEL_STORAGE, model);
+      } catch (e) {}
+      updateParserModeBadge();
+      renderActiveView();
+      showToast(key ? "gemini ai key saved locally" : "switched to on-device parser");
+    }
+
+    function clearGeminiSettings() {
+      try {
+        localStorage.removeItem(GEMINI_KEY_STORAGE);
+      } catch (e) {}
+      updateParserModeBadge();
+      renderActiveView();
+      showToast("gemini key cleared — using on-device parser");
+    }
+
+    async function testGeminiApiKey() {
+      const inpVal = (document.getElementById("geminiApiKeyInput")?.value || "").trim();
+      const key = inpVal || getGeminiApiKey();
+      if (!key) return showToast("enter a gemini api key first");
+      if (inpVal && inpVal !== getGeminiApiKey()) {
+        try { localStorage.setItem(GEMINI_KEY_STORAGE, inpVal); } catch (e) {}
+        updateParserModeBadge();
+      }
+      showToast("testing gemini connection...");
+      try {
+        const res = await parseRambleWithGemini("pick up oat milk tomorrow", key);
+        if (res && res.length) {
+          showToast("gemini key verified & working!");
+          renderActiveView();
+        }
+      } catch (err) {
+        showToast("key test failed: " + err.message);
       }
     }
 
@@ -2175,99 +2983,177 @@
     }
 
     /* =========================================================================
-       8. PIP COMPANION, GUIDED TOUR & WIND-DOWN
+       8. PIP FLOATING TRIGGER & SEPARATE COZY ISOMETRIC ROOM MODAL
        ========================================================================= */
-    function renderPipCard() {
-      const card = document.getElementById("pipCornerCard");
-      const info = document.getElementById("pipExpandedInfo");
-      const actions = document.getElementById("pipExpandedActions");
-      const toggle = document.getElementById("pipCollapseBtn");
-      const badge = document.getElementById("pipTreatsBadge");
-      if (!card) return;
+    const PIP_ROOM_SPOTS = {
+      rug: {
+        x: 216,
+        y: 326,
+        caption: "pip is relaxing on the fluffy rug · tap pip or any cozy spot"
+      },
+      bed: {
+        x: 274,
+        y: 238,
+        caption: "pip hopped onto the warm terracotta bed"
+      },
+      window: {
+        x: 332,
+        y: 214,
+        caption: "pip is watching the golden sunset by the candles"
+      }
+    };
 
-      if (badge) badge.textContent = `treats: ${window.appState.pipTreats}`;
-      if (window.appState.pipMinimized) {
-        card.classList.add("minimized");
-        if (info) info.style.display = "none";
-        if (actions) actions.style.display = "none";
-        if (toggle) toggle.textContent = "+";
-      } else {
-        card.classList.remove("minimized");
-        if (info) info.style.display = "block";
-        if (actions) actions.style.display = "flex";
-        if (toggle) toggle.textContent = "–";
+    function renderPipUI() {
+      const treats = window.appState.pipTreats || 0;
+      const trigTreats = document.getElementById("pipTriggerTreats");
+      const roomTreats = document.getElementById("pipRoomTreatsPill");
+      if (trigTreats) trigTreats.textContent = `treats: ${treats}`;
+      if (roomTreats) roomTreats.textContent = `treats: ${treats}`;
+      applyRoomSpotAndAmbiance();
+    }
+
+    function pulsePipTrigger() {
+      const trig = document.getElementById("pipFloatingTrigger");
+      if (!trig) return;
+      trig.classList.remove("pip-trigger-pulse");
+      void trig.offsetWidth;
+      trig.classList.add("pip-trigger-pulse");
+    }
+
+    function openPipRoom() {
+      renderPipUI();
+      const modal = document.getElementById("pipRoomModal");
+      if (modal) modal.classList.add("open");
+    }
+
+    function closePipRoom() {
+      const modal = document.getElementById("pipRoomModal");
+      if (modal) modal.classList.remove("open");
+    }
+
+    function closePipRoomOnBackdrop(e) {
+      if (e.target && e.target.id === "pipRoomModal") {
+        closePipRoom();
       }
     }
 
-    function togglePipMinimize() {
-      window.appState.pipMinimized = !window.appState.pipMinimized;
-      saveLocalOnly();
-      renderPipCard();
+    function applyRoomSpotAndAmbiance() {
+      const spotKey = window.appState.pipSpot || "rug";
+      const spot = PIP_ROOM_SPOTS[spotKey] || PIP_ROOM_SPOTS.rug;
+      const charEl = document.getElementById("pipRoomCharacter");
+      const statusEl = document.getElementById("pipRoomStatusText");
+      const glassEl = document.getElementById("roomWindowGlass");
+      const eyesAwake = document.getElementById("pipEyesAwake");
+      const eyesSleep = document.getElementById("pipEyesSleep");
+      const ambBtn = document.getElementById("roomAmbianceBtn");
+
+      if (charEl) {
+        charEl.setAttribute("transform", `translate(${spot.x}, ${spot.y})`);
+      }
+
+      const isNight = Boolean(window.appState.pipNightMode);
+      if (glassEl) {
+        glassEl.setAttribute("fill", isNight ? "url(#roomNightGrad)" : "url(#roomSunsetGrad)");
+      }
+      if (eyesAwake) eyesAwake.style.display = isNight ? "none" : "inline";
+      if (eyesSleep) eyesSleep.style.display = isNight ? "inline" : "none";
+      if (ambBtn) ambBtn.textContent = isNight ? "golden sunset" : "wind-down nap";
+
+      if (statusEl) {
+        statusEl.textContent = isNight
+          ? "pip is napping under the twinkling stars & fairy lights"
+          : spot.caption;
+      }
     }
 
-    function petPip(e) {
+    function movePipToSpot(spotKey) {
+      if (!PIP_ROOM_SPOTS[spotKey]) return;
+      window.appState.pipSpot = spotKey;
+      if (spotKey !== "bed") {
+        window.appState.pipNightMode = false;
+      }
+      saveLocalOnly();
+      applyRoomSpotAndAmbiance();
+      triggerRoomPipHop();
+    }
+
+    function toggleRoomAmbiance() {
+      window.appState.pipNightMode = !window.appState.pipNightMode;
+      if (window.appState.pipNightMode) {
+        window.appState.pipSpot = "bed";
+      }
+      saveLocalOnly();
+      applyRoomSpotAndAmbiance();
+      triggerRoomPipHop();
+    }
+
+    function triggerRoomPipHop() {
+      const charEl = document.getElementById("pipRoomCharacter");
+      if (!charEl) return;
+      charEl.classList.remove("pip-hop-anim");
+      void charEl.offsetWidth;
+      charEl.classList.add("pip-hop-anim");
+    }
+
+    function spawnRoomHeart(e, symbol) {
+      const heart = document.createElement("div");
+      heart.className = "pip-heart";
+      heart.textContent = symbol || "♥";
+      const x = (e && e.clientX) ? e.clientX : window.innerWidth / 2;
+      const y = (e && e.clientY) ? e.clientY : window.innerHeight / 2;
+      heart.style.left = (x - 8) + "px";
+      heart.style.top = (y - 16) + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1150);
+    }
+
+    function interactWithRoomPip(e) {
       if (navigator.vibrate) {
         try { navigator.vibrate([18, 30, 18]); } catch (err) {}
       }
-      const caption = document.getElementById("pipMoodCaption");
-      if (caption) caption.textContent = "purring softly · happy to be here";
-      const heart = document.createElement("div");
-      heart.className = "pip-heart";
-      heart.textContent = "♥";
-      const x = (e && e.clientX) ? e.clientX : window.innerWidth - 70;
-      const y = (e && e.clientY) ? e.clientY : window.innerHeight - 90;
-      heart.style.left = x + "px";
-      heart.style.top = (y - 12) + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1100);
+      triggerRoomPipHop();
+      spawnRoomHeart(e, "♥");
+      const statusEl = document.getElementById("pipRoomStatusText");
+      if (statusEl) {
+        statusEl.textContent = "pip purrs softly in the warm lantern glow ♥";
+      }
     }
 
-    function feedPipTreat() {
-      if (window.appState.pipTreats <= 0) {
-        showToast("no treats left — log a wind-down check-in to earn more!");
+    function feedPipInRoom(e) {
+      if ((window.appState.pipTreats || 0) <= 0) {
+        showToast("no treats left — check off a task to earn +1 treat!");
+        const statusEl = document.getElementById("pipRoomStatusText");
+        if (statusEl) statusEl.textContent = "complete any task in your list to earn +1 treat for pip";
         return;
       }
       window.appState.pipTreats -= 1;
+      window.appState.pipNightMode = false;
       persistState();
-      renderPipCard();
-      petPip();
-      showToast("pip enjoyed a treat!");
+      renderPipUI();
+      triggerRoomPipHop();
+      spawnRoomHeart(e, "✦");
+      const statusEl = document.getElementById("pipRoomStatusText");
+      if (statusEl) {
+        statusEl.textContent = "pip nibbled a cozy treat and wiggled happily!";
+      }
+      showToast("gave pip 1 treat!");
     }
 
-    function selectWindDownMood(btn, mood) {
-      selectedMood = mood;
-      document.querySelectorAll(".mood-btn").forEach(b => b.classList.remove("selected"));
-      btn.classList.add("selected");
-    }
-
-    function saveWindDownLog() {
-      const note = (document.getElementById("windDownNoteInput")?.value || "").trim().toLowerCase();
-      window.appState.windDownLogs.unshift({
-        date: new Date().toISOString(),
-        mood: selectedMood,
-        note
-      });
-      window.appState.pipTreats += 1;
-      const inp = document.getElementById("windDownNoteInput");
-      if (inp) inp.value = "";
-      persistState();
-      renderPipCard();
-      closeModal("windDownModal");
-      showToast("wind-down saved · pip earned +1 treat");
-    }
-
+    /* =========================================================================
+       9. GUIDED TOUR, FIREBASE OVERRIDE & OPTION 3 PWA ICON BUNDLE
+       ========================================================================= */
     const TOUR_STEPS = [
       {
-        title: "1. effortless voice or text capture",
-        body: "tap mic or type any stream-of-consciousness thought. stillwater automatically routes items into today, errands, ideas, or @waiting on."
+        title: "1. effortless voice or text ramble paraphrasing",
+        body: "tap mic or type a messy thought. stillwater splits multi-task rambles, paraphrases them into clean action items, and routes them into today, errands, ideas, or @waiting on."
       },
       {
-        title: "2. calm category submenus & views",
-        body: "switch between category pills or focus on your big 3 priorities and gentle calendar time blocks without visual clutter."
+        title: "2. earn treats & visit pip's cozy room",
+        body: "every task you check off earns +1 treat. tap pip in the bottom-right corner anytime to open his isometric room, pet him, or share treats."
       },
       {
         title: "3. haze-free e-reader reading lamp",
-        body: "tap lamp in the top strip to warm and dim your screen for late-night reading while keeping dark ink crisp and legible."
+        body: "tap lamp in the top strip to cast a warm, crisp reading light without washing out dark ink."
       },
       {
         title: "4. cross-device google cloud sync",
@@ -2320,9 +3206,6 @@
       location.reload();
     }
 
-    /* =========================================================================
-       9. OPTION 3 PIP-IN-RIPPLES CANVAS ICON GENERATOR & PWA BUNDLE
-       ========================================================================= */
     function renderOption3IconDataUrl(size) {
       const canvas = document.createElement("canvas");
       canvas.width = size;
@@ -2330,14 +3213,12 @@
       const ctx = canvas.getContext("2d");
       const s = size / 120;
 
-      // Botanical sage background
       const grad = ctx.createLinearGradient(0, 0, 0, size);
-      grad.addColorStop(0, "#c3d4c4");
-      grad.addColorStop(1, "#7c9882");
+      grad.addColorStop(0, "#C3D4C4");
+      grad.addColorStop(1, "#637A68");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, size, size);
 
-      // Concentric water ripples
       ctx.strokeStyle = "rgba(234, 242, 235, 0.65)";
       ctx.lineWidth = 2.4 * s;
       ctx.beginPath();
@@ -2350,9 +3231,8 @@
       ctx.ellipse(60 * s, 86 * s, 29 * s, 9 * s, 0, 0, Math.PI * 2);
       ctx.stroke();
 
-      // Leaf ears
-      ctx.fillStyle = "#68846d";
-      ctx.strokeStyle = "#364438";
+      ctx.fillStyle = "#637A68";
+      ctx.strokeStyle = "#26221E";
       ctx.lineWidth = 2.4 * s;
       ctx.beginPath();
       ctx.moveTo(44 * s, 43 * s);
@@ -2370,9 +3250,8 @@
       ctx.fill();
       ctx.stroke();
 
-      // Pip body
-      ctx.fillStyle = "#efe6d6";
-      ctx.strokeStyle = "#364438";
+      ctx.fillStyle = "#EFE6D6";
+      ctx.strokeStyle = "#26221E";
       ctx.lineWidth = 2.6 * s;
       ctx.beginPath();
       ctx.moveTo(38 * s, 64 * s);
@@ -2384,8 +3263,7 @@
       ctx.fill();
       ctx.stroke();
 
-      // Eyes & smile
-      ctx.fillStyle = "#364438";
+      ctx.fillStyle = "#26221E";
       ctx.beginPath();
       ctx.arc(51 * s, 59 * s, 2.8 * s, 0, Math.PI * 2);
       ctx.arc(69 * s, 59 * s, 2.8 * s, 0, Math.PI * 2);
@@ -2416,8 +3294,8 @@
           short_name: "stillwater",
           start_url: "./index.html",
           display: "standalone",
-          background_color: "#f5f2eb",
-          theme_color: "#f5f2eb",
+          background_color: "#F6F4EF",
+          theme_color: "#F6F4EF",
           icons: [
             { src: icon192, sizes: "192x192", type: "image/png", purpose: "any maskable" },
             { src: icon512, sizes: "512x512", type: "image/png", purpose: "any maskable" }
@@ -2452,8 +3330,8 @@
         short_name: "stillwater",
         start_url: "./index.html",
         display: "standalone",
-        background_color: "#f5f2eb",
-        theme_color: "#f5f2eb",
+        background_color: "#F6F4EF",
+        theme_color: "#F6F4EF",
         icons: [
           { src: "./icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
           { src: "./icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
@@ -2462,7 +3340,7 @@
     }
 
     function buildServiceWorkerText() {
-      return `const CACHE_NAME = 'stillwater-v10';
+      return `const CACHE_NAME = 'stillwater-v13';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', (e) => {
   self.skipWaiting();
@@ -2518,10 +3396,11 @@ self.addEventListener('fetch', (e) => {
        10. INITIALIZATION
        ========================================================================= */
     window.renderAll = function() {
+      updateParserModeBadge();
       renderCategorySubmenus();
       renderViewTabs();
       renderActiveView();
-      renderPipCard();
+      renderPipUI();
     };
 
     window.addEventListener("DOMContentLoaded", () => {
